@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">NumApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="incremental_search">Incremental search</string>
+    <string name="bisection">Bisection</string>
+    <string name="una_variable">Una variable</string>
+    <string name="false_position">False position</string>
+    <string name="fixed_point">Fixed Point</string>
+    <string name="secant">Secant</string>
+    <string name="multiple_roots">Multiple roots</string>
+    <string name="variables_multiples">Variables multiples</string>
+    <string name="gausiana_simple">gausiana simple</string>
+    <string name="newton">Newton</string>
+    <string name="gausiana_pivotevo">gausiana pivotevo</string>
+    <string name="one_variable">one variable</string>
+</resources>
