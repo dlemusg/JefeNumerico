@@ -5,6 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { SystemEqPage } from '../pages/system-eq/system-eq';
+import { InterpolationPage } from '../pages/interpolation/interpolation';
+import { NonLinearPage } from '../pages/non-linear/non-linear';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,7 +16,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    SystemEqPage,
+    InterpolationPage,
+    NonLinearPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    SystemEqPage,
+    InterpolationPage,
+    NonLinearPage
   ],
   providers: [
     StatusBar,
