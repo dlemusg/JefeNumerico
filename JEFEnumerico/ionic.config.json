@@ -1,0 +1,7 @@
+{
+  "name": "JEFEnumerico",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
