@@ -1,9 +1,3 @@
-<!--
-  Generated template for the NonLinearPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header color="secondary">
   <ion-navbar color="secondary">
     <button ion-button menuToggle>
@@ -12,9 +6,52 @@
     <ion-title>non-linear equations</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
-  <h3>aqui van los diferentes metodos</h3>
-  <p>
-    :D
-  </p>
+  <ion-grid>
+    <ion-row>
+      <p class="encabezados" padding>Método para determinar aproximaciones iniciales</p>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Busquedas
+          Incrementales</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p class="encabezados" padding>Métodos por intervalos abiertos o cerrados</p>
+    </ion-row>
+    <ion-row>
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Biseccion</button>
+      </ion-col>
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Regla Falsa</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p padding class="encabezados">Métodos Abiertos</p>
+    </ion-row>
+    <ion-row>
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Punto Fijo</button>
+      </ion-col>
+
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Newton</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary" (click)="falta definir" class="boton">Secante</button>
+      </ion-col>
+
+      <ion-col col-m-6>
+        <button ion-button full round color="secondary"(click)="falta definir" class="boton">Raíces Mult.</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
