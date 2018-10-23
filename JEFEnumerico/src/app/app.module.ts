@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { SystemEqPage } from '../pages/system-eq/system-eq';
 import { InterpolationPage } from '../pages/interpolation/interpolation';
 import { NonLinearPage } from '../pages/non-linear/non-linear';
+import { BisectionPage } from './../pages/non-linear/bisection/bisection';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     SystemEqPage,
     InterpolationPage,
-    NonLinearPage
+    NonLinearPage,
+    BisectionPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     SystemEqPage,
     InterpolationPage,
-    NonLinearPage
+    NonLinearPage,
+    BisectionPage
   ],
   providers: [
     StatusBar,

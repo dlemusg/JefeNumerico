@@ -1,3 +1,4 @@
+import { BisectionPage } from './bisection/bisection';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -17,6 +18,11 @@ export class NonLinearPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+  
+  public goBisection(){
+    this.navCtrl.push(BisectionPage);
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NonLinearPage');
