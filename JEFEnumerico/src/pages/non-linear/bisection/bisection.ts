@@ -14,10 +14,6 @@ export class BisectionPage {
 
   private dataSubmit = {};
 
-  private dataReceivedPost = {};
-
-  private sentData = {}
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public HttpNonLinearProvider: HttpNonLinearProvider) {
     this.dataSubmit['f'] = '';
     this.dataSubmit['xi'] = '';
@@ -25,9 +21,7 @@ export class BisectionPage {
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
-    this.dataSubmit['"tipoError"'] = '';
-    this.dataSubmit["tipoError"] = '';
-    this.sentData = {}
+    this.dataSubmit['tipoError'] = '';
   }
 
   ionViewDidLoad() {
@@ -51,15 +45,6 @@ export class BisectionPage {
     } else {
       this.postServer();
     }
-    this.sentData = { "f"           : this.dataSubmit['f'],
-                      "xi"          : this.dataSubmit['xi'],
-                      "xs"          : this.dataSubmit['xs'],
-                      "tolerancia"  : this.dataSubmit['tolerancia'],
-                      "niteraciones": this.dataSubmit['niteraciones'],
-                      "tipoError"   : this.dataSubmit['tipoError'] 
-                    };
-    
-    console.log(this.sentData);
   }
 
   ayuda() {
@@ -90,10 +75,21 @@ export class BisectionPage {
   }
 
   postServer() {
-    this.HttpNonLinearProvider.post(this.sentData, this.apiUrl)
+    console.log(this.dataSubmit);
+    this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
         this.dataReceivedPost = result;
-        console.log(this.dataReceivedPost);
+      }, (err) => {
+        console.log(err);
+      });
+  }
+
+  getServer() {
+    console.log("entre al log");
+    this.HttpNonLinearProvider.get(this.apiUrl)
+      .then(data => {
+        this.dataReceivedPost = data;
+        console.log(data);
       }, (err) => {
         console.log(err);
       });
