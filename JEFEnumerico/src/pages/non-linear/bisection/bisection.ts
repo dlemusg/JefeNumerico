@@ -14,13 +14,14 @@ export class BisectionPage {
 
   private dataSubmit = {};
 
+  private dataRecived = {}
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public HttpNonLinearProvider: HttpNonLinearProvider) {
     this.dataSubmit['f'] = '';
     this.dataSubmit['xi'] = '';
     this.dataSubmit['xs'] = '';
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
-    this.dataSubmit['tipoError'] = '';
     this.dataSubmit['tipoError'] = '';
   }
 
@@ -78,21 +79,10 @@ export class BisectionPage {
     console.log(this.dataSubmit);
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
-        this.dataReceivedPost = result;
+        this.dataRecived = result;
       }, (err) => {
         console.log(err);
       });
   }
-
-  getServer() {
-    console.log("entre al log");
-    this.HttpNonLinearProvider.get(this.apiUrl)
-      .then(data => {
-        this.dataReceivedPost = data;
-        console.log(data);
-      }, (err) => {
-        console.log(err);
-      });
-  }
-
+  
 }
