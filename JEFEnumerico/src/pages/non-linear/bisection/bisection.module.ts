@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { BisectionPage } from './bisection';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { BisectionPage } from './bisection';
   ],
   imports: [
     IonicPageModule.forChild(BisectionPage),
+    NgxDatatableModule
   ],
 })
 export class BisectionPageModule {}

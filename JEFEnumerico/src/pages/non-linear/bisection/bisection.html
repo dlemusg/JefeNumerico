@@ -20,7 +20,7 @@
       <ion-row>
         <ion-col col-12>
           <ion-item>
-            <ion-label color="dark">f(x) = </ion-label>
+            <ion-label color="dark">f(X) = </ion-label>
             <ion-input type="text" [(ngModel)]="dataSubmit.f" name="f"></ion-input>
           </ion-item>
         </ion-col>
@@ -29,14 +29,14 @@
       <ion-row>
         <ion-col col-6>
           <ion-item>
-            <ion-label color="dark">xi =</ion-label>
+            <ion-label color="dark">Xi =</ion-label>
             <ion-input type="number" [(ngModel)]="dataSubmit.xi" name="xi"></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col col-6>
           <ion-item>
-            <ion-label color="dark">xs =</ion-label>
+            <ion-label color="dark">Xs =</ion-label>
             <ion-input type="number" [(ngModel)]="dataSubmit.xs" name="xs"></ion-input>
           </ion-item>
         </ion-col>
@@ -74,10 +74,19 @@
           <button ion-button type="submit" color="secondary" block>Calculate</button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button type="submit" color="secondary" block>Graficator</button>
+          <button ion-button type="button" color="secondary" (click)="graficator()" block>Graficator</button>
         </ion-col>
       </ion-row>
     </form>
+    
   </ion-grid>
-  
+  <ngx-datatable [hidden]="table" [scrollbarH]="false" class="fullscreen" ngClass="bootstrap" [rows]="rows" [columnMode]="'force'" [reorderable]="false">
+    <ngx-datatable-column name="n"></ngx-datatable-column>
+    <ngx-datatable-column name="Xi"></ngx-datatable-column>
+    <ngx-datatable-column name="Xs"></ngx-datatable-column>
+    <ngx-datatable-column name="Xm"></ngx-datatable-column>
+    <ngx-datatable-column name="fx"></ngx-datatable-column>
+    <ngx-datatable-column name="Error"></ngx-datatable-column>
+  </ngx-datatable>
+
 </ion-content>

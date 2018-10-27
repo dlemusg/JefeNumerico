@@ -9,12 +9,12 @@ import { HttpNonLinearProvider } from './../../../providers/http-non-linear/http
   templateUrl: 'bisection.html',
 })
 export class BisectionPage {
-
-  private apiUrl = 'http://dlemusg.pythonanywhere.com/bisection';
-
+  private rows =[];
+  private table;
+  private apiUrl;
   private dataSubmit = {};
-
   private dataRecived = {}
+  private temp = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public HttpNonLinearProvider: HttpNonLinearProvider) {
     this.dataSubmit['f'] = '';
@@ -23,6 +23,16 @@ export class BisectionPage {
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
+
+    this.dataRecived['n'] = '';
+    this.dataRecived['xi']= '';
+    this.dataRecived['xs'] = '';
+    this.dataRecived['xm']= '';
+    this.dataRecived['f'] = '';
+    this.dataRecived['error'] = '';
+
+    this.apiUrl = 'http://dlemusg.pythonanywhere.com/bisection';
+    this.table = true;
   }
 
   ionViewDidLoad() {
@@ -47,7 +57,9 @@ export class BisectionPage {
       this.postServer();
     }
   }
-
+  graficator(){
+    console.log("falta implementarme");
+  }
   ayuda() {
     let alert = this.alertCtrl.create({
       title: 'Help!',
@@ -75,11 +87,36 @@ export class BisectionPage {
     alert.present();
   }
 
+  tableComplete(){
+    this.table = false;//people can see the table
+    var i;
+    console.log(this.dataRecived);
+    for (i = 0; i < this.dataRecived.n.length; i++) {
+      var json = {
+        "n"     : this.dataRecived.n[i],
+        "xi"    : this.dataRecived.xi[i],
+        "xs"    : this.dataRecived.xs[i],
+        "xm"    : this.dataRecived.xm[i],
+        "fx"     : this.dataRecived.fxm[i],
+        "error" : this.dataRecived.error[i],
+      };
+      this.rows.push(json);
+      this.rows = [...this.rows];
+    } 
+    this.rows = [...this.rows];
+    console.log(this.rows);
+  }
+
   postServer() {
-    console.log(this.dataSubmit);
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
-        this.dataRecived = result;
+        if(typeof(result)=="string"){
+          this.showAlert("ERROR", result)
+        }
+        else{
+          this.dataRecived = result;
+          this.tableComplete();
+        }
       }, (err) => {
         console.log(err);
       });

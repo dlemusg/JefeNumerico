@@ -14,22 +14,9 @@ export class HttpNonLinearProvider {
     console.log('Hello HttpNonLinearProvider Provider');
   }
 
-  public get(apiUrl) {
-    return new Promise(resolve => {
-      this.http.get(apiUrl).subscribe(data => {
-        resolve(data);
-        console.log(data)
-      }, err => {
-        console.log(err);
-      });
-    });
-  }
-
   public post(data, apiUrl) {
-    console.log(data);
     return (new Promise((resolve, reject) => {
       this.http.post(apiUrl, data).subscribe(res => {
-          console.log(res);
           resolve(res);
         }, (err) => {
           reject(err);
