@@ -5,7 +5,7 @@
     </button>
     <ion-title>Bisection</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal" (click)="ayuda()">
+      <button ion-button icon-only color="royal" (click)="help()">
         <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
       </button>
     </ion-buttons>
@@ -21,7 +21,7 @@
         <ion-col col-12>
           <ion-item>
             <ion-label color="dark">f(X) = </ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.f" name="f"></ion-input>
+            <ion-input type="text"[(ngModel)]="dataSubmit.f"name="f"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -30,14 +30,16 @@
         <ion-col col-6>
           <ion-item>
             <ion-label color="dark">Xi =</ion-label>
-            <ion-input type="number" [(ngModel)]="dataSubmit.xi" name="xi"></ion-input>
+            <ion-input type="number"[(ngModel)]="dataSubmit.xi"name="xi">
+            </ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col col-6>
           <ion-item>
             <ion-label color="dark">Xs =</ion-label>
-            <ion-input type="number" [(ngModel)]="dataSubmit.xs" name="xs"></ion-input>
+            <ion-input type="number"[(ngModel)]="dataSubmit.xs"name="xs">
+            </ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -46,13 +48,15 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">Tol =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.tolerancia" name="tolerancia"></ion-input>
+            <ion-input type="text"[(ngModel)]="dataSubmit.tolerancia"
+            name="tolerancia"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
             <ion-label color="dark">Iters =</ion-label>
-            <ion-input type="number" [(ngModel)]="dataSubmit.niteraciones" name="niteraciones"></ion-input>
+            <ion-input type="number"[(ngModel)]="dataSubmit.niteraciones"
+            name="niteraciones"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -71,16 +75,19 @@
 
       <ion-row>
         <ion-col col-6>
-          <button ion-button type="submit" color="secondary" block>Calculate</button>
+          <button ion-button type="submit"color="secondary"block>Calculate
+          </button>
         </ion-col>
         <ion-col col-6>
-          <button ion-button type="button" color="secondary" (click)="graficator()" block>Graficator</button>
+          <button ion-button type="button"color="secondary"
+          (click)="graficador()"block>graficador</button>
         </ion-col>
       </ion-row>
     </form>
     
   </ion-grid>
-  <ngx-datatable [hidden]="table" [scrollbarH]="false" class="fullscreen" ngClass="bootstrap" [rows]="rows" [columnMode]="'force'" [reorderable]="false">
+  <ngx-datatable [hidden]="table"[scrollbarH]="false"class="fullscreen"
+    ngClass="bootstrap"[rows]="rows"[columnMode]="'force'"[reorderable]="false">
     <ngx-datatable-column name="n"></ngx-datatable-column>
     <ngx-datatable-column name="Xi"></ngx-datatable-column>
     <ngx-datatable-column name="Xs"></ngx-datatable-column>
