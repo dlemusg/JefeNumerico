@@ -1,3 +1,4 @@
+import { FalsePositionPage } from './false-position/false-position';
 import { BisectionPage } from './bisection/bisection';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -23,6 +24,9 @@ export class NonLinearPage {
     this.navCtrl.push(BisectionPage);
   }
 
+  public goFalsePosition(){
+    this.navCtrl.push(FalsePositionPage);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NonLinearPage');

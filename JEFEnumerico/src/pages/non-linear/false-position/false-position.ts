@@ -5,13 +5,12 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 
-
 @IonicPage()
 @Component({
-  selector: 'page-bisection',
-  templateUrl: 'bisection.html',
+  selector: 'page-false-position',
+  templateUrl: 'false-position.html',
 })
-export class BisectionPage {
+export class FalsePositionPage {
   private rows = [];
   private table;
   private apiUrl;
@@ -35,13 +34,13 @@ export class BisectionPage {
     this.dataReceived['xm'] = [];
     this.dataReceived['f'] = [];
     this.dataReceived['error'] = [];
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/bisection';
+    this.apiUrl = 'http://dlemusg.pythonanywhere.com/falsePostion';
     this.table = true;
   }
 
   // When the page loads, a signal is sent to the console.
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BisectionPage');
+    console.log('ionViewDidLoad FalsePositionPage');
   }
 
   /* check if the fields are empty and show a signal, if they are empty, call 
@@ -94,21 +93,21 @@ export class BisectionPage {
   help() {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      message: ` <ul>
-                    <li> f (x) must be a continuous function </ li>
-                    <br> <br>
-                    <li> To find an adequate interval [a, b] help yourself with
-                     incremental searches </ li>
-                    <br> <br>
-                    <li> There is a single root if it is true that f is 
-                    continuous in [a, b], f (a) * f (b) <0, f is differentiable 
-                    in (a, b) and f '(x) does not change sign for all x that 
-                    belongs [a, b] </ li>
-                    <br> <br>
-                    <li> The elevation for the absolute error in each stage is
-                    En = (In - 1) / 2 </ li>
-                    <br> <br>
-                  </ ul> `,
+      message: `<ul>
+                <li> This method retains all the characteristics and conditions
+                     that the bisection method possesses except for how to 
+                     calculate the intermediate point of the interval. 
+                </li>
+                <br><br>
+                <li> We say that methods by closed intervals always converge,
+                     sometimes False Rule can be a Bisection improvement 
+                </ li>
+                <br> <br>
+                <li> The problem of closed interval methods is the slowness
+                     of convergence, that is, they require many iterations. 
+                </li>
+                <br> <br>
+                </ul>`,
       buttons: ['OK']
     });
     alert.present();
@@ -144,7 +143,7 @@ export class BisectionPage {
     this.rows = [...this.rows];
     console.log(this.rows);
   }
-  
+
   /* communicates with the server sending the data, when it finishes it calls 
   the function tableComplete() */
   postServer() {

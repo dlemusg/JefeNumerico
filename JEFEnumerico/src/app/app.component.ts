@@ -7,7 +7,6 @@ import { HomePage } from '../pages/home/home';
 import { SystemEqPage } from '../pages/system-eq/system-eq';
 import { InterpolationPage } from '../pages/interpolation/interpolation';
 import { NonLinearPage } from '../pages/non-linear/non-linear';
-import { BisectionPage } from './../pages/non-linear/bisection/bisection';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,8 +26,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Non-linear equations', component: NonLinearPage },
       { title: 'system of equations', component: SystemEqPage },
-      { title: 'Interpolation', component: InterpolationPage },
-      { title: 'Bisection', component: BisectionPage }
+      { title: 'Interpolation', component: InterpolationPage }
     ];
 
   }

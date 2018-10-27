@@ -11,6 +11,7 @@ import { SystemEqPage } from '../pages/system-eq/system-eq';
 import { InterpolationPage } from '../pages/interpolation/interpolation';
 import { NonLinearPage } from '../pages/non-linear/non-linear';
 import { BisectionPage } from './../pages/non-linear/bisection/bisection';
+import { FalsePositionPage } from './../pages/non-linear/false-position/false-position';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +26,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     SystemEqPage,
     InterpolationPage,
     NonLinearPage,
-    BisectionPage
+    BisectionPage,
+    FalsePositionPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     SystemEqPage,
     InterpolationPage,
     NonLinearPage,
-    BisectionPage
+    BisectionPage,
+    FalsePositionPage
   ],
   providers: [
     StatusBar,
