@@ -1,3 +1,4 @@
+import { IncrementalSearchPage } from './../pages/non-linear/incremental-search/incremental-search';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -6,7 +7,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { SystemEqPage } from '../pages/system-eq/system-eq';
 import { InterpolationPage } from '../pages/interpolation/interpolation';
 import { NonLinearPage } from '../pages/non-linear/non-linear';
@@ -22,12 +22,12 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     SystemEqPage,
     InterpolationPage,
     NonLinearPage,
     BisectionPage,
-    FalsePositionPage
+    FalsePositionPage,
+    IncrementalSearchPage
   ],
   imports: [
     BrowserModule,
@@ -39,12 +39,12 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     SystemEqPage,
     InterpolationPage,
     NonLinearPage,
     BisectionPage,
-    FalsePositionPage
+    FalsePositionPage,
+    IncrementalSearchPage
   ],
   providers: [
     StatusBar,

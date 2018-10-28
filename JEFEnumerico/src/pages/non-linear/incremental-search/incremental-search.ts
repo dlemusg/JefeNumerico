@@ -5,59 +5,53 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 
+/**
+ * Generated class for the IncrementalSearchPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-false-position',
-  templateUrl: 'false-position.html',
+  selector: 'page-incremental-search',
+  templateUrl: 'incremental-search.html',
 })
-export class FalsePositionPage {
+export class IncrementalSearchPage {
   private rows = [];
   private table;
   private apiUrl;
   private dataSubmit = {};
   private dataReceived = {};
 
-  // build the page by assigning values to the global variables.
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, public HttpNonLinearProvider:
       HttpNonLinearProvider) {
     this.dataSubmit['f'] = '';
-    this.dataSubmit['xi'] = '';
-    this.dataSubmit['xs'] = '';
-    this.dataSubmit['tolerancia'] = '';
+    this.dataSubmit['x0'] = '';
+    this.dataSubmit['delta'] = '';
     this.dataSubmit['niteraciones'] = '';
-    this.dataSubmit['tipoError'] = '';
 
-    this.dataReceived['n'] = [];
-    this.dataReceived['xi'] = [];
-    this.dataReceived['xs'] = [];
-    this.dataReceived['xm'] = [];
-    this.dataReceived['f'] = [];
-    this.dataReceived['error'] = [];
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/falsePostion';
+    this.dataReceived['iter'] = [];
+    this.dataReceived['x1'] = [];
+    this.dataReceived['fx1'] = [];
+    this.apiUrl = 'http://dlemusg.pythonanywhere.com/incrementalSearch';
     this.table = true;
   }
 
-  // When the page loads, a signal is sent to the console.
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FalsePositionPage');
+    console.log('ionViewDidLoad IncrementalSearchPage');
   }
 
-  /* check if the fields are empty and show a signal, if they are empty, call 
-  the postServer function */
   submitForm() {
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
-    } else if (this.dataSubmit['xi'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty");
-    } else if (this.dataSubmit['xs'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty.");
-    } else if (this.dataSubmit['tolerancia'] == '') {
-      this.showAlert("ERROR:", "The xb field can not be empty");
+    } else if (this.dataSubmit['x0'] == '') {
+      this.showAlert("ERROR:", "The field x can not be empty");
+    } else if (this.dataSubmit['delta'] == '') {
+      this.showAlert("ERROR:", "The delta field can not be empty");
     } else if (this.dataSubmit['niteraciones'] == '') {
       this.showAlert("ERROR:", "The field No. Iters can not be empty");
-    } else if (this.dataSubmit['tipoError'] == '') {
-      this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
       this.postServer();
     }
@@ -73,20 +67,16 @@ export class FalsePositionPage {
     let alert = this.alertCtrl.create({
       title: 'Help!',
       message: `<ul>
-                  <li> This method retains all the characteristics and conditions
-                      that the bisection method possesses except for how to 
-                      calculate the intermediate point of the interval. 
-                  </li>
+                  <li> f(x) must be a continuous function </li>
                   <br><br>
-                  <li> We say that methods by closed intervals always converge,
-                      sometimes False Rule can be a Bisection improvement 
-                  </ li>
+                  <li> If f(x) is defined in [a,b] and it follows that: 
+                  f(a) * f(b) < 0, then there is some Xm in [a,b] that is root </li>
                   <br> <br>
-                  <li> The problem of closed interval methods is the slowness
-                      of convergence, that is, they require many iterations. 
+                  <li> There is a single root if it is true that f is continuous
+                      in [a, b], f (a) * f (b) <0, f is differentiable in (a, b)
+                      and f '(x) does not change sign for all x that belongs [a,b] 
                   </li>
-                  <br> <br>
-                </ul>`,
+                </ul> `,
       buttons: ['OK']
     });
     alert.present();
@@ -106,20 +96,17 @@ export class FalsePositionPage {
   tableComplete() {
     this.table = false;//people can see the table
     var i;
-    for (i = 0; i < this.dataReceived['n'].length; i++) {
+    for (i = 0; i < this.dataReceived['iter'].length; i++) {
       var json = {
-        "n": this.dataReceived['n'][i],
-        "xi": this.dataReceived['xi'][i],
-        "xs": this.dataReceived['xs'][i],
-        "xm": this.dataReceived['xm'][i],
-        "fx": this.dataReceived['fxm'][i],
-        "error": this.dataReceived['error'][i],
+        "n": this.dataReceived['iter'][i],
+        "x": this.dataReceived['x1'][i],
+        "fx": this.dataReceived['fx1'][i]
       };
       this.rows.push(json);
       this.rows = [...this.rows];
     }
   }
-
+  
   /* communicates with the server sending the data, when it finishes it calls 
   the function tableComplete() */
   postServer() {

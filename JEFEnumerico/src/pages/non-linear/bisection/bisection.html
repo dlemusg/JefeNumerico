@@ -19,8 +19,13 @@
       <ion-row>
         <ion-col col-12>
           <ion-item>
-            <ion-label color="dark">f(X) = </ion-label>
+            <ion-label color="dark">f(x) = </ion-label>
             <ion-input type="text"[(ngModel)]="dataSubmit.f"name="f"></ion-input>
+            <ion-buttons end>
+              <button ion-button icon-only color="royal" (click)="help()">
+                <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+              </button>
+            </ion-buttons>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -28,7 +33,7 @@
       <ion-row>
         <ion-col col-6>
           <ion-item>
-            <ion-label color="dark">Xi =</ion-label>
+            <ion-label color="dark">xi =</ion-label>
             <ion-input type="number"[(ngModel)]="dataSubmit.xi"name="xi">
             </ion-input>
           </ion-item>
@@ -36,7 +41,7 @@
 
         <ion-col col-6>
           <ion-item>
-            <ion-label color="dark">Xs =</ion-label>
+            <ion-label color="dark">xs =</ion-label>
             <ion-input type="number"[(ngModel)]="dataSubmit.xs"name="xs">
             </ion-input>
           </ion-item>

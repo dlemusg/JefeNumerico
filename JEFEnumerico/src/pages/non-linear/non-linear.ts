@@ -2,6 +2,7 @@ import { FalsePositionPage } from './false-position/false-position';
 import { BisectionPage } from './bisection/bisection';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IncrementalSearchPage } from './incremental-search/incremental-search';
 
 /**
  * Generated class for the NonLinearPage page.
@@ -26,6 +27,9 @@ export class NonLinearPage {
 
   public goFalsePosition(){
     this.navCtrl.push(FalsePositionPage);
+  }
+  public goIncrementalSearch(){
+    this.navCtrl.push(IncrementalSearchPage);
   }
 
   ionViewDidLoad() {
