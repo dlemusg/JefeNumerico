@@ -1,8 +1,12 @@
 from flask import Flask, jsonify, request
 from sympy import *
 from sympy.parsing.sympy_parser import parse_expr
+from django.http import JsonResponse
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 
 @app.route('/incrementalSearch', methods=['GET', 'POST'])
@@ -486,7 +490,7 @@ def multipleRoots():
 @app.route('/ensayo')
 def ensayo():
 
-    return "Hello"
+    return jsonify("Hello")
 
 
 if __name__ == '__main__':
