@@ -50,11 +50,11 @@ export class BisectionPage {
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['xi'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty");
+      this.showAlert("ERROR:", "The field xi can not be empty");
     } else if (this.dataSubmit['xs'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty.");
+      this.showAlert("ERROR:", "The field xs can not be empty.");
     } else if (this.dataSubmit['tolerancia'] == '') {
-      this.showAlert("ERROR:", "The xb field can not be empty");
+      this.showAlert("ERROR:", "The tolerance field can not be empty");
     } else if (this.dataSubmit['niteraciones'] == '') {
       this.showAlert("ERROR:", "The field No. Iters can not be empty");
     } else if (this.dataSubmit['tipoError'] == '') {
@@ -120,6 +120,7 @@ export class BisectionPage {
       };
       this.rows.push(json);
       this.rows = [...this.rows];
+
     }
   }
   
@@ -133,6 +134,7 @@ export class BisectionPage {
         }
         else {
           this.dataReceived = result;
+          this.showAlert("Approximate root",this.dataReceived["raices"][0])
           this.tableComplete();
         }
       }, (err) => {
