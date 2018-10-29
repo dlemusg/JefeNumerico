@@ -1,3 +1,4 @@
+import { FixedPointPage } from './fixed-point/fixed-point';
 import { FalsePositionPage } from './false-position/false-position';
 import { BisectionPage } from './bisection/bisection';
 import { Component } from '@angular/core';
@@ -28,8 +29,13 @@ export class NonLinearPage {
   public goFalsePosition(){
     this.navCtrl.push(FalsePositionPage);
   }
+  
   public goIncrementalSearch(){
     this.navCtrl.push(IncrementalSearchPage);
+  }
+
+  public goFixedPoint(){
+    this.navCtrl.push(FixedPointPage);
   }
 
   ionViewDidLoad() {

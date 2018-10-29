@@ -1,3 +1,4 @@
+import { FixedPointPage } from './../pages/non-linear/fixed-point/fixed-point';
 import { IncrementalSearchPage } from './../pages/non-linear/incremental-search/incremental-search';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -27,7 +28,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     NonLinearPage,
     BisectionPage,
     FalsePositionPage,
-    IncrementalSearchPage
+    IncrementalSearchPage,
+    FixedPointPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     NonLinearPage,
     BisectionPage,
     FalsePositionPage,
-    IncrementalSearchPage
+    IncrementalSearchPage,
+    FixedPointPage
   ],
   providers: [
     StatusBar,

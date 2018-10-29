@@ -4,14 +4,19 @@ import { IonicPage, NavController, NavParams, AlertController }
   from 'ionic-angular';
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
-
+/**
+ * Generated class for the FixedPointPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-bisection',
-  templateUrl: 'bisection.html',
+  selector: 'page-fixed-point',
+  templateUrl: 'fixed-point.html',
 })
-export class BisectionPage {
+export class FixedPointPage {
   private rows = [];
   private table;
   private apiUrl;
@@ -23,41 +28,41 @@ export class BisectionPage {
     public alertCtrl: AlertController, public HttpNonLinearProvider:
       HttpNonLinearProvider) {
     this.dataSubmit['f'] = '';
+    this.dataSubmit['g'] = '';
     this.dataSubmit['xi'] = '';
-    this.dataSubmit['xs'] = '';
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
 
     this.dataReceived['n'] = [];
     this.dataReceived['xi'] = [];
-    this.dataReceived['xs'] = [];
+    this.dataReceived['fx'] = [];
     this.dataReceived['xm'] = [];
-    this.dataReceived['f'] = [];
     this.dataReceived['error'] = [];
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/bisection';
+    this.dataReceived['raices'] = [];//falta hacer uso de raices
+    this.apiUrl = 'http://dlemusg.pythonanywhere.com/fixedpoint';
     this.table = true;
   }
 
   // When the page loads, a signal is sent to the console.
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BisectionPage');
+    console.log('ionViewDidLoad FixedPointPage');
   }
 
   /* check if the fields are empty and show a signal, if they are empty, call 
   the postServer function */
   submitForm() {
-    if (this.dataSubmit['f'] == '') {
+    if (this.dataSubmit['fx'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
-    } else if (this.dataSubmit['xi'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty");
-    } else if (this.dataSubmit['xs'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty.");
-    } else if (this.dataSubmit['tolerancia'] == '') {
-      this.showAlert("ERROR:", "The xb field can not be empty");
-    } else if (this.dataSubmit['niteraciones'] == '') {
+    } else if (this.dataSubmit['gx'] == '') {
+      this.showAlert("ERROR:", "The field g(x) can not be empty");
+    } else if (this.dataSubmit['x0'] == '') {
+      this.showAlert("ERROR:", "The field x0 can not be empty");
+    } else if (this.dataSubmit['tol'] == '') {
+      this.showAlert("ERROR:", "The tolerancia field can not be empty");
+    } else if (this.dataSubmit['nIters'] == '') {
       this.showAlert("ERROR:", "The field No. Iters can not be empty");
-    } else if (this.dataSubmit['tipoError'] == '') {
+    } else if (this.dataSubmit['tipo_error'] == '') {
       this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
       this.postServer();
@@ -73,21 +78,20 @@ export class BisectionPage {
   help() {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      message: ` <ul>
-                    <li> f (x) must be a continuous function </ li>
-                    <br> <br>
-                    <li> To find an adequate interval [a, b] help yourself with
-                     incremental searches </ li>
-                    <br> <br>
-                    <li> There is a single root if it is true that f is 
-                    continuous in [a, b], f (a) * f (b) <0, f is differentiable 
-                    in (a, b) and f '(x) does not change sign for all x that 
-                    belongs [a, b] </ li>
-                    <br> <br>
-                    <li> The elevation for the absolute error in each stage is
-                    En = (In - 1) / 2 </ li>
-                    <br> <br>
-                  </ ul> `,
+      message: `<ul>
+                  <li>We seek to solve the problem of x = g (x) </li>
+                  <br> <br>
+                  <li>If g is a continuous function in the interval [a, b] and
+                      for all x that belongs [a, b] it is satisfied that g (x)
+                      belongs [a, b] so g has a fixed point in [a , b] 
+                  </li>
+                  <br> <br>
+                  <li>If for all x that belongs (a, b) it is satisfied that 
+                      g'(x) exists in (a, b) and |g'(x)| <= k <1 so g has a 
+                      single fixed point p in [a, b] 
+                  </li>
+                  <br> <br>
+                  </ul>`,
       buttons: ['OK']
     });
     alert.present();
@@ -111,16 +115,15 @@ export class BisectionPage {
       var json = {
         "n": this.dataReceived['n'][i],
         "xi": this.dataReceived['xi'][i],
-        "xs": this.dataReceived['xs'][i],
-        "xm": this.dataReceived['xm'][i],
-        "fx": this.dataReceived['fxm'][i],
-        "error": this.dataReceived['error'][i],
+        "xs": this.dataReceived['fx'][i],
+        "error": this.dataReceived['error'][i]
       };
       this.rows.push(json);
       this.rows = [...this.rows];
+      this.showAlert("Approximate root: ",this.dataReceived['raices'][0]);
     }
   }
-  
+
   /* communicates with the server sending the data, when it finishes it calls 
   the function tableComplete() */
   postServer() {
@@ -128,8 +131,7 @@ export class BisectionPage {
       .then(result => {
         if (typeof (result) == "string") {
           this.showAlert("ERROR", result)
-        }
-        else {
+        }else {
           this.dataReceived = result;
           this.tableComplete();
         }
