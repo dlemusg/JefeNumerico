@@ -1,3 +1,4 @@
+import { NewtonPage } from './../pages/non-linear/newton/newton';
 import { FixedPointPage } from './../pages/non-linear/fixed-point/fixed-point';
 import { IncrementalSearchPage } from './../pages/non-linear/incremental-search/incremental-search';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +30,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     BisectionPage,
     FalsePositionPage,
     IncrementalSearchPage,
-    FixedPointPage
+    FixedPointPage,
+    NewtonPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     BisectionPage,
     FalsePositionPage,
     IncrementalSearchPage,
-    FixedPointPage
+    FixedPointPage,
+    NewtonPage
   ],
   providers: [
     StatusBar,

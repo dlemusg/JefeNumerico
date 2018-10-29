@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Bisection</ion-title>
+    <ion-title>Fixed point</ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="royal" (click)="help()">
         <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
@@ -19,13 +19,13 @@
         <ion-col col-12>
           <ion-item>
             <ion-label color="dark">f(x) =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+            <ion-input type="text" [(ngModel)]="dataSubmit.f" name="f"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-12>
           <ion-item>
             <ion-label color="dark">g(x) =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.gx" name="gx"></ion-input>
+            <ion-input type="text" [(ngModel)]="dataSubmit.g" name="g"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -36,13 +36,13 @@
         <ion-col col-6>
           <ion-item>
             <ion-label color="dark">x0 =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+            <ion-input type="text" [(ngModel)]="dataSubmit.xi" name="xi"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-6>
           <ion-item>
             <ion-label color="dark">Tol =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
+            <ion-input type="text" [(ngModel)]="dataSubmit.tolerancia" name="tolerancia"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -51,13 +51,13 @@
         <ion-col col-7>
           <ion-item>
             <ion-label color="dark">Iters =</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+            <ion-input type="text" [(ngModel)]="dataSubmit.niteraciones" name="niteraciones"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-5>
           <ion-item>
             <ion-label color="dark">Error</ion-label>
-            <ion-select [(ngModel)]="dataSubmit.tipo_error" name="tipo_error">
+            <ion-select [(ngModel)]="dataSubmit.tipoError" name="tipoError">
               <ion-option value="1">Absoluto</ion-option>
               <ion-option value="2">Relativo</ion-option>
             </ion-select>
@@ -80,9 +80,7 @@
   <ngx-datatable [hidden]="table"[scrollbarH]="true"class="fullscreen"
     ngClass="bootstrap"[rows]="rows"[columnMode]="'force'"[reorderable]="false">
     <ngx-datatable-column name="n"></ngx-datatable-column>
-    <ngx-datatable-column name="Xi"></ngx-datatable-column>
-    <ngx-datatable-column name="Xs"></ngx-datatable-column>
-    <ngx-datatable-column name="Xm"></ngx-datatable-column>
+    <ngx-datatable-column name="x"></ngx-datatable-column>
     <ngx-datatable-column name="fx"></ngx-datatable-column>
     <ngx-datatable-column name="Error"></ngx-datatable-column>
   </ngx-datatable>

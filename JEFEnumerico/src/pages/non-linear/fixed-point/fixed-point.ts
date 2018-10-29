@@ -37,10 +37,9 @@ export class FixedPointPage {
     this.dataReceived['n'] = [];
     this.dataReceived['xi'] = [];
     this.dataReceived['fx'] = [];
-    this.dataReceived['xm'] = [];
     this.dataReceived['error'] = [];
     this.dataReceived['raices'] = [];//falta hacer uso de raices
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/fixedpoint';
+    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/fixedpoint';
     this.table = true;
   }
 
@@ -52,17 +51,17 @@ export class FixedPointPage {
   /* check if the fields are empty and show a signal, if they are empty, call 
   the postServer function */
   submitForm() {
-    if (this.dataSubmit['fx'] == '') {
+    if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
-    } else if (this.dataSubmit['gx'] == '') {
+    } else if (this.dataSubmit['g'] == '') {
       this.showAlert("ERROR:", "The field g(x) can not be empty");
-    } else if (this.dataSubmit['x0'] == '') {
+    } else if (this.dataSubmit['xi'] == '') {
       this.showAlert("ERROR:", "The field x0 can not be empty");
-    } else if (this.dataSubmit['tol'] == '') {
+    } else if (this.dataSubmit['tolerancia'] == '') {
       this.showAlert("ERROR:", "The tolerancia field can not be empty");
-    } else if (this.dataSubmit['nIters'] == '') {
+    } else if (this.dataSubmit['niteraciones'] == '') {
       this.showAlert("ERROR:", "The field No. Iters can not be empty");
-    } else if (this.dataSubmit['tipo_error'] == '') {
+    } else if (this.dataSubmit['tipoError'] == '') {
       this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
       this.postServer();
@@ -114,14 +113,14 @@ export class FixedPointPage {
     for (i = 0; i < this.dataReceived['n'].length; i++) {
       var json = {
         "n": this.dataReceived['n'][i],
-        "xi": this.dataReceived['xi'][i],
-        "xs": this.dataReceived['fx'][i],
+        "x": this.dataReceived['xi'][i],
+        "fx": this.dataReceived['fx'][i],
         "error": this.dataReceived['error'][i]
       };
       this.rows.push(json);
       this.rows = [...this.rows];
-      this.showAlert("Approximate root: ",this.dataReceived['raices'][0]);
     }
+    this.showAlert("Approximate root: ",this.dataReceived['raices'][0]);
   }
 
   /* communicates with the server sending the data, when it finishes it calls 

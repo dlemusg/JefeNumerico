@@ -4,6 +4,7 @@ import { BisectionPage } from './bisection/bisection';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IncrementalSearchPage } from './incremental-search/incremental-search';
+import { NewtonPage } from './newton/newton';
 
 /**
  * Generated class for the NonLinearPage page.
@@ -36,6 +37,10 @@ export class NonLinearPage {
 
   public goFixedPoint(){
     this.navCtrl.push(FixedPointPage);
+  }
+
+  public goNewton(){
+    this.navCtrl.push(NewtonPage);
   }
 
   ionViewDidLoad() {
