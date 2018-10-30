@@ -1,3 +1,4 @@
+import { MultipleRootsPage } from './multiple-roots/multiple-roots';
 import { FixedPointPage } from './fixed-point/fixed-point';
 import { FalsePositionPage } from './false-position/false-position';
 import { BisectionPage } from './bisection/bisection';
@@ -46,6 +47,10 @@ export class NonLinearPage {
 
   public goSecant(){
     this.navCtrl.push(SecantPage);
+  }
+
+  public goMultipleRoots(){
+    this.navCtrl.push(MultipleRootsPage);
   }
 
   ionViewDidLoad() {
