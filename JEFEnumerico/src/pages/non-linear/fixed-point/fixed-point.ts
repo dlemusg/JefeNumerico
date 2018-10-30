@@ -4,12 +4,6 @@ import { IonicPage, NavController, NavParams, AlertController }
   from 'ionic-angular';
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
-/**
- * Generated class for the FixedPointPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -34,13 +28,20 @@ export class FixedPointPage {
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
 
+    this.initializationDataRecived();
+    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com//fixedpoint';
+    this.table = true;
+  }
+
+  //Initialize the variables
+  initializationDataRecived(){
+    this.rows = [];
+    this.rows = [...this.rows];
     this.dataReceived['n'] = [];
     this.dataReceived['xi'] = [];
     this.dataReceived['fx'] = [];
     this.dataReceived['error'] = [];
-    this.dataReceived['raices'] = [];//falta hacer uso de raices
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/fixedpoint';
-    this.table = true;
+    this.dataReceived['raices'] = [];
   }
 
   // When the page loads, a signal is sent to the console.
@@ -56,9 +57,9 @@ export class FixedPointPage {
     } else if (this.dataSubmit['g'] == '') {
       this.showAlert("ERROR:", "The field g(x) can not be empty");
     } else if (this.dataSubmit['xi'] == '') {
-      this.showAlert("ERROR:", "The field x0 can not be empty");
+      this.showAlert("ERROR:", "The field xi can not be empty");
     } else if (this.dataSubmit['tolerancia'] == '') {
-      this.showAlert("ERROR:", "The tolerancia field can not be empty");
+      this.showAlert("ERROR:", "The tolerance field can not be empty");
     } else if (this.dataSubmit['niteraciones'] == '') {
       this.showAlert("ERROR:", "The field No. Iters can not be empty");
     } else if (this.dataSubmit['tipoError'] == '') {
@@ -70,6 +71,7 @@ export class FixedPointPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
+    this.showAlert("ERROR","It has not been implemented");
     console.log("falta implementarme");
   }
 
@@ -120,19 +122,28 @@ export class FixedPointPage {
       this.rows.push(json);
       this.rows = [...this.rows];
     }
-    this.showAlert("Approximate root: ",this.dataReceived['raices'][0]);
   }
 
   /* communicates with the server sending the data, when it finishes it calls 
   the function tableComplete() */
   postServer() {
+    console.log(this.dataSubmit);
+    console.log(this.apiUrl);
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
+        this.rows = [...this.rows];
+        this.initializationDataRecived();
         if (typeof (result) == "string") {
           this.showAlert("ERROR", result)
         }else {
           this.dataReceived = result;
-          this.tableComplete();
+          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1){
+            this.showAlert("root: ",this.dataReceived["raices"][0]);
+          }
+          else{ 
+            this.tableComplete();
+            this.showAlert("Approximate root: ",this.dataReceived["raices"][0]);
+          }
         }
       }, (err) => {
         console.log(err);
