@@ -32,13 +32,13 @@ export class IncrementalSearchPage {
     this.dataSubmit['delta'] = '';
     this.dataSubmit['niteraciones'] = '';
 
+    this.table = true;
     this.initializationDataRecived();
     this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/incrementalSearch';
   }
 
   //Initialize the variables
   initializationDataRecived(){
-    this.table = true;
     this.rows = [];
     this.rows = [...this.rows];
     this.dataReceived['iter'] = [];

@@ -28,7 +28,9 @@ export class BisectionPage {
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
+    
 
+    this.table = true;
     this.initializationDataRecived();
     this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/bisection';
   }
@@ -60,7 +62,6 @@ export class BisectionPage {
 
   //Initialize the variables
   initializationDataRecived(){
-    this.table = true;
     this.rows = [];
     this.rows = [...this.rows];
     this.dataReceived['n'] = [];

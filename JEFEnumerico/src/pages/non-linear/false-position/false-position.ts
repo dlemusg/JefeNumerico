@@ -27,15 +27,22 @@ export class FalsePositionPage {
     this.dataSubmit['tolerancia'] = '';
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
+    this.table = true;
+    
+    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/falsePostion';
+    this.initializationDataRecived();
+  }
 
+  //Initialize the variables
+  initializationDataRecived(){
+    this.rows = [];
+    this.rows = [...this.rows];
     this.dataReceived['n'] = [];
     this.dataReceived['xi'] = [];
     this.dataReceived['xs'] = [];
     this.dataReceived['xm'] = [];
     this.dataReceived['f'] = [];
     this.dataReceived['error'] = [];
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/falsePostion';
-    this.table = true;
   }
 
   // When the page loads, a signal is sent to the console.
@@ -49,13 +56,13 @@ export class FalsePositionPage {
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['xi'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty");
+      this.showAlert("ERROR:", "The field xi can not be empty");
     } else if (this.dataSubmit['xs'] == '') {
-      this.showAlert("ERROR:", "The field xa can not be empty.");
+      this.showAlert("ERROR:", "The field xs can not be empty.");
     } else if (this.dataSubmit['tolerancia'] == '') {
-      this.showAlert("ERROR:", "The xb field can not be empty");
+      this.showAlert("ERROR:", "The tolerance field can not be empty");
     } else if (this.dataSubmit['niteraciones'] == '') {
-      this.showAlert("ERROR:", "The field No. Iters can not be empty");
+      this.showAlert("ERROR:", "The field No.Iters can not be empty");
     } else if (this.dataSubmit['tipoError'] == '') {
       this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
@@ -65,6 +72,7 @@ export class FalsePositionPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
+    this.showAlert("ERROR","It has not been implemented");
     console.log("falta implementarme");
   }
 
@@ -106,13 +114,14 @@ export class FalsePositionPage {
   tableComplete() {
     this.table = false;//people can see the table
     var i;
+    this.rows = [...this.rows];
     for (i = 0; i < this.dataReceived['n'].length; i++) {
       var json = {
         "n": this.dataReceived['n'][i],
         "xi": this.dataReceived['xi'][i],
         "xs": this.dataReceived['xs'][i],
         "xm": this.dataReceived['xm'][i],
-        "fx": this.dataReceived['fxm'][i],
+        "fxm": this.dataReceived['fxm'][i],
         "error": this.dataReceived['error'][i],
       };
       this.rows.push(json);
@@ -125,12 +134,20 @@ export class FalsePositionPage {
   postServer() {
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
+        this.rows = [...this.rows];
+        this.initializationDataRecived();
         if (typeof (result) == "string") {
-          this.showAlert("ERROR", result)
+          this.showAlert("ERROR", result);
         }
         else {
           this.dataReceived = result;
-          this.tableComplete();
+          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1){
+            this.showAlert("root: ",this.dataReceived["raices"][0]);
+          }
+          else{ 
+            this.tableComplete();
+            this.showAlert("Approximate root: ",this.dataReceived["raices"][0]);
+          }
         }
       }, (err) => {
         console.log(err);
