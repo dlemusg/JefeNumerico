@@ -58,6 +58,7 @@ export class BisectionPage {
     }
   }
 
+  //Initialize the variables
   initializationDataRecived(){
     this.table = true;
     this.rows = [];
@@ -73,6 +74,7 @@ export class BisectionPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
+    this.showAlert("ERROR","It has not been implemented");
     console.log("falta implementarme");
   }
 
@@ -139,10 +141,10 @@ export class BisectionPage {
         }
         else {
           this.dataReceived = result;
-          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length == 1)
+          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1)
             this.showAlert("root: ",this.dataReceived["raices"][0]);
           else{ 
-            this.showAlert("Approximate root: ",this.dataReceived["raices"][0])
+            this.showAlert("Approximate root: ",this.dataReceived["raices"][0]);
             this.tableComplete();
           }
         }

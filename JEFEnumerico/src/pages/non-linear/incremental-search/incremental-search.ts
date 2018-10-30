@@ -32,11 +32,18 @@ export class IncrementalSearchPage {
     this.dataSubmit['delta'] = '';
     this.dataSubmit['niteraciones'] = '';
 
+    this.initializationDataRecived();
+    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/incrementalSearch';
+  }
+
+  //Initialize the variables
+  initializationDataRecived(){
+    this.table = true;
+    this.rows = [];
+    this.rows = [...this.rows];
     this.dataReceived['iter'] = [];
     this.dataReceived['x1'] = [];
     this.dataReceived['fx1'] = [];
-    this.apiUrl = 'http://dlemusg.pythonanywhere.com/incrementalSearch';
-    this.table = true;
   }
 
   ionViewDidLoad() {
@@ -47,11 +54,11 @@ export class IncrementalSearchPage {
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['x0'] == '') {
-      this.showAlert("ERROR:", "The field x can not be empty");
+      this.showAlert("ERROR:", "The field x0 can not be empty");
     } else if (this.dataSubmit['delta'] == '') {
       this.showAlert("ERROR:", "The delta field can not be empty");
     } else if (this.dataSubmit['niteraciones'] == '') {
-      this.showAlert("ERROR:", "The field No. Iters can not be empty");
+      this.showAlert("ERROR:", "The field No.Iters can not be empty");
     } else {
       this.postServer();
     }
@@ -59,6 +66,7 @@ export class IncrementalSearchPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
+    this.showAlert("ERROR","It has not been implemented");
     console.log("falta implementarme");
   }
 
@@ -112,11 +120,15 @@ export class IncrementalSearchPage {
   postServer() {
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
-        if (typeof (result) == "string") {
-          this.showAlert("ERROR", result)
-        }
+        this.initializationDataRecived()
+        if (typeof (result) == "string")
+          this.showAlert("ERROR", result);
         else {
+
           this.dataReceived = result;
+          var temp = this.dataReceived['x1'].length;
+          this.showAlert("Interval where there is a root: ",
+            "("+this.dataReceived['x1'][temp-1]+","+this.dataReceived['x1'][temp-2]+")");
           this.tableComplete();
         }
       }, (err) => {
