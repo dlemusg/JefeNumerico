@@ -1,3 +1,4 @@
+import { SecantPage } from './../pages/non-linear/secant/secant';
 import { NewtonPage } from './../pages/non-linear/newton/newton';
 import { FixedPointPage } from './../pages/non-linear/fixed-point/fixed-point';
 import { IncrementalSearchPage } from './../pages/non-linear/incremental-search/incremental-search';
@@ -31,7 +32,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     FalsePositionPage,
     IncrementalSearchPage,
     FixedPointPage,
-    NewtonPage
+    NewtonPage,
+    SecantPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     FalsePositionPage,
     IncrementalSearchPage,
     FixedPointPage,
-    NewtonPage
+    NewtonPage,
+    SecantPage
   ],
   providers: [
     StatusBar,

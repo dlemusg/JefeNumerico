@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IncrementalSearchPage } from './incremental-search/incremental-search';
 import { NewtonPage } from './newton/newton';
+import { SecantPage } from './secant/secant';
 
 /**
  * Generated class for the NonLinearPage page.
@@ -41,6 +42,10 @@ export class NonLinearPage {
 
   public goNewton(){
     this.navCtrl.push(NewtonPage);
+  }
+
+  public goSecant(){
+    this.navCtrl.push(SecantPage);
   }
 
   ionViewDidLoad() {
