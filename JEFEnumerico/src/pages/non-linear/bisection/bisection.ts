@@ -29,14 +29,8 @@ export class BisectionPage {
     this.dataSubmit['niteraciones'] = '';
     this.dataSubmit['tipoError'] = '';
 
-    this.dataReceived['n'] = [];
-    this.dataReceived['xi'] = [];
-    this.dataReceived['xs'] = [];
-    this.dataReceived['xm'] = [];
-    this.dataReceived['f'] = [];
-    this.dataReceived['error'] = [];
+    this.initializationDataRecived();
     this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/bisection';
-    this.table = true;
   }
 
   // When the page loads, a signal is sent to the console.
@@ -62,6 +56,19 @@ export class BisectionPage {
     } else {
       this.postServer();
     }
+  }
+
+  initializationDataRecived(){
+    this.table = true;
+    this.rows = [];
+    this.rows = [...this.rows];
+    this.dataReceived['n'] = [];
+    this.dataReceived['xi'] = [];
+    this.dataReceived['xs'] = [];
+    this.dataReceived['xm'] = [];
+    this.dataReceived['f'] = [];
+    this.dataReceived['error'] = [];
+    this.dataReceived['raices'] = [];
   }
 
   // add the graphing page below the buttons and hide the table.
@@ -105,8 +112,6 @@ export class BisectionPage {
 
   // complete the table with the values sent by the server
   tableComplete() {
-    this.rows = [];
-    this.rows = [...this.rows];
     this.table = false;//people can see the table
     var i;
     for (i = 0; i < this.dataReceived['n'].length; i++) {
@@ -120,7 +125,6 @@ export class BisectionPage {
       };
       this.rows.push(json);
       this.rows = [...this.rows];
-
     }
   }
   
@@ -129,13 +133,18 @@ export class BisectionPage {
   postServer() {
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
+        this.initializationDataRecived();
         if (typeof (result) == "string") {
           this.showAlert("ERROR", result)
         }
         else {
           this.dataReceived = result;
-          this.showAlert("Approximate root",this.dataReceived["raices"][0])
-          this.tableComplete();
+          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length == 1)
+            this.showAlert("root: ",this.dataReceived["raices"][0]);
+          else{ 
+            this.showAlert("Approximate root: ",this.dataReceived["raices"][0])
+            this.tableComplete();
+          }
         }
       }, (err) => {
         console.log(err);
