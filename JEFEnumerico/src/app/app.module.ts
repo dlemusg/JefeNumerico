@@ -1,3 +1,4 @@
+import { PartialPivotingPage } from './../pages/system-eq/partial-pivoting/partial-pivoting';
 import { MultipleRootsPage } from './../pages/non-linear/multiple-roots/multiple-roots';
 import { SecantPage } from './../pages/non-linear/secant/secant';
 import { NewtonPage } from './../pages/non-linear/newton/newton';
@@ -37,7 +38,8 @@ import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
     NewtonPage,
     SecantPage,
     MultipleRootsPage,
-    GaussSimplePage
+    GaussSimplePage,
+    PartialPivotingPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
     NewtonPage,
     SecantPage,
     MultipleRootsPage,
-    GaussSimplePage
+    GaussSimplePage,
+    PartialPivotingPage
   ],
   providers: [
     StatusBar,
