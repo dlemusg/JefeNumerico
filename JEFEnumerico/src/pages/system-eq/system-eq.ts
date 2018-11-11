@@ -2,6 +2,7 @@ import { PartialPivotingPage } from './partial-pivoting/partial-pivoting';
 import { GaussSimplePage } from './gauss-simple/gauss-simple';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { TotalPivotingPage } from './total-pivoting/total-pivoting';
 
 @IonicPage()
 @Component({
@@ -23,6 +24,10 @@ export class SystemEqPage {
 
   goPartialPivoting(){
     this.navCtrl.push(PartialPivotingPage);
+  }
+
+  goTotalPivoting(){
+    this.navCtrl.push(TotalPivotingPage);
   }
 
   showAlert(error, subtitle) {

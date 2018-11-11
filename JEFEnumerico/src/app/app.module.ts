@@ -22,6 +22,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-linear';
 import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
+import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivoting';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
     SecantPage,
     MultipleRootsPage,
     GaussSimplePage,
-    PartialPivotingPage
+    PartialPivotingPage,
+    TotalPivotingPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
     SecantPage,
     MultipleRootsPage,
     GaussSimplePage,
-    PartialPivotingPage
+    PartialPivotingPage,
+    TotalPivotingPage
   ],
   providers: [
     StatusBar,

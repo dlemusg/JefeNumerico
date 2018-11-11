@@ -5,14 +5,13 @@ import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 import { stringify } from '@angular/core/src/render3/util';
 
-
 @IonicPage()
 @Component({
-  selector: 'page-partial-pivoting',
-  templateUrl: 'partial-pivoting.html',
+  selector: 'page-total-pivoting',
+  templateUrl: 'total-pivoting.html',
 })
-export class PartialPivotingPage {
-  private apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/partialPivoting';
+export class TotalPivotingPage {
+  private apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/totalPivoting';
 
   showResult = false;
 
@@ -26,6 +25,8 @@ export class PartialPivotingPage {
 
   private dataReceived = {};
   matrix: Array<string> = [];
+
+  brands: any;
   n: any;
   input: string;
   private buttonClicked;
@@ -36,13 +37,13 @@ export class PartialPivotingPage {
     this.buttonClicked = false;
     this.n = "";
     this.showStep = false;
+    this.brands = [];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PartialPivotingPage');
+    console.log('ionViewDidLoad TotalPivotingPage');
   }
-
-
+  
   //open the button help
   private help() {
     let alert = this.alertCtrl.create({
@@ -50,6 +51,7 @@ export class PartialPivotingPage {
       subTitle: ` <p> Remember: </ p>
                     <ul>
                       <li> Matrix A must be invertible </li>
+                      <li> Avoid putting zeros in the diagonal </li>
                     </ul>`,
       buttons: ['OK']
     });
@@ -92,8 +94,9 @@ export class PartialPivotingPage {
     this.showStep = false;
     if (this.dataReceived['error'] == null) {
       this.xs = this.dataReceived['X'];
-      
+      this.brands = this.dataReceived['marcas'];
       this.escalonada = this.dataReceived[(this.n - 1).toString()];
+      console.log(this.escalonada);
     } else {
       this.showAlert("ERORR:", this.dataReceived['error']);
     }
@@ -129,4 +132,5 @@ export class PartialPivotingPage {
         console.log(err);
       });
   }
+
 }
