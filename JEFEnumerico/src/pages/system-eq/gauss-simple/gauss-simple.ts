@@ -23,7 +23,7 @@ export class GaussSimplePage {
   xs = [];
   escalonada : any;
 
-  private dataReceivedPost = {};
+  private dataReceived = {};
   matrix: Array<string> = [];
   n: any;
   input: string;
@@ -41,6 +41,8 @@ export class GaussSimplePage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
 
+
+  //open the button help
   private help () {
     let alert = this.alertCtrl.create({
       title: 'Help!',
@@ -54,6 +56,7 @@ export class GaussSimplePage {
     alert.present();
   }
 
+  //create matrix with lengh n
   createMatrix() {
     this.showResult = false;
     this.showStep = false;
@@ -74,6 +77,7 @@ export class GaussSimplePage {
     }
   }
 
+  //recibe data and verify if vector b is correct
   submitForm(){
     console.log(this.datasubmit)
     if(Object.keys(this.datasubmit.b).length != this.n){
@@ -83,17 +87,20 @@ export class GaussSimplePage {
     }
   }
 
+  //verify if there are some error and put the results
   private results(){
     this.showStep = false;
-    if(this.dataReceivedPost['error'] == null ){
-      this.xs = this.dataReceivedPost['X'];
-      this.escalonada = this.dataReceivedPost[(this.n-1).toString()];
+    if(this.dataReceived['error'] == null ){
+      this.xs = this.dataReceived['X'];
+      this.escalonada = this.dataReceived[(this.n-1).toString()];
       console.log(this.escalonada);
     }else{
-      this.showAlert("ERORR:",this.dataReceivedPost['error']);
+      this.showAlert("ERORR:",this.dataReceived['error']);
     }
   }
 
+
+  //show alerts
   showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
       title: error,
@@ -103,15 +110,17 @@ export class GaussSimplePage {
     alert.present();
   }
 
-  funciono(){
+  //show steps and hide view the normal result
+  steps(){
     this.showResult = false;
     this.showStep = true;
   }
 
+  //conect with server end send data
   public postServer() {
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
     .then(result => {
-      this.dataReceivedPost = result;
+      this.dataReceived = result;
       this.showResult = true;
       console.log("ME LLEGA DEL SERVIDOR COMO RTA");
       console.log(result);
