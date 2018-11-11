@@ -20,6 +20,7 @@ import { FalsePositionPage } from './../pages/non-linear/false-position/false-po
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-linear';
+import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     FixedPointPage,
     NewtonPage,
     SecantPage,
-    MultipleRootsPage
+    MultipleRootsPage,
+    GaussSimplePage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
     FixedPointPage,
     NewtonPage,
     SecantPage,
-    MultipleRootsPage
+    MultipleRootsPage,
+    GaussSimplePage
   ],
   providers: [
     StatusBar,

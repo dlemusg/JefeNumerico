@@ -16,14 +16,54 @@
 // automatically applied to the <body> element in the app.
 @import 'themes/bootstrap';
 @import 'assets/icons';
-.question {
-    background-color: white;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
+
+.text-t-t {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: center;
+  font-style: oblique;
+  font-weight: bolder;
+  color: white;
 }
 
-.hiveColor{
-    color: #009688;
-    background-color: #009688;
+.text-t-c {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: left;
 }
+
+.style-t-t {
+  border-style: solid;
+  border-width: 1px;
+  background-color: #0a7a6f;
+  padding: 8px;
+  text-align: center;
+  color: white;
+  border-color: gray;
+}
+
+.style-t-c {
+  border-style: solid;
+  border-width: 1px;
+  background-color: whitesmoke;
+  padding: 8px;
+  text-align: center;
+  color: black;
+  border-color: gray;
+}
+
+.cell {
+  background-color: white;
+  margin: 3%;
+  width: fit-content;
+}
+
+.inputMatrix {
+  background-color: #9fbdba;
+  margin: 3px;
+  width: 50px;
+  border-radius: 5%;
+  justify-content: center;
+}
+  
+  

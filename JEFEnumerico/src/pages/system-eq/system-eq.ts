@@ -1,3 +1,4 @@
+import { GaussSimplePage } from './gauss-simple/gauss-simple';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
@@ -20,6 +21,10 @@ export class SystemEqPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SystemEqPage');
+  }
+
+  goGaussSimple(){
+    this.navCtrl.push(GaussSimplePage);
   }
 
   showAlert(error, subtitle) {
