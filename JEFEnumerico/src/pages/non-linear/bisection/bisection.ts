@@ -45,7 +45,6 @@ export class BisectionPage {
   the postServer function */
   submitForm() {
     this.graf = false;
-    console.log("2");
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['xi'] == '') {
@@ -59,7 +58,6 @@ export class BisectionPage {
     } else if (this.dataSubmit['tipoError'] == '') {
       this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
-      console.log("3");
       this.postServer();
     }
   }
@@ -101,9 +99,11 @@ export class BisectionPage {
       'f': this.dataSubmit['f'],
       'a': this.dataSubmit['xi'],
       'b': this.dataSubmit['xs'],
+      'lpoints':["xm"],
+      'lraices': ["xm final"],
       'points': points,
       'raices': final
-    }
+    };
     this.navCtrl.push(GraficadorPage, send);
   }
 
@@ -175,7 +175,6 @@ export class BisectionPage {
         }
         else {
           this.dataReceived = result;
-          console.log(result);
           if(this.graf) this.graficador();
           if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1)
             this.showAlert("root: ",this.dataReceived["raices"][0]);

@@ -5,13 +5,6 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 
-/**
- * Generated class for the IncrementalSearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-incremental-search',
@@ -23,6 +16,7 @@ export class IncrementalSearchPage {
   private apiUrl;
   private dataSubmit = {};
   private dataReceived = {};
+  private graf = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, public HttpNonLinearProvider:
@@ -50,7 +44,10 @@ export class IncrementalSearchPage {
     console.log('ionViewDidLoad IncrementalSearchPage');
   }
 
+  /* check if the fields are empty and show a signal, if they are empty, call 
+  the postServer function */
   submitForm() {
+    this.graf = false;
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['x0'] == '') {
@@ -66,8 +63,36 @@ export class IncrementalSearchPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
-    this.showAlert("ERROR","It has not been implemented");
-    console.log("falta implementarme");
+    this.graf = true;
+    var a: string = this.dataSubmit['x0'] + "";
+    var b: string = "";
+    
+    let size = this.dataReceived['x1'].length;
+    a = this.dataReceived['x1'][0] + "";
+    b = this.dataReceived['x1'][size - 1] + "";
+    var aux: number = <number><any>this.dataReceived['x1'][size-1];
+    var send = {
+      'f': this.dataSubmit['f'],
+      'a': a,
+      'b': "" + (aux + 0.2),
+      'lpoints':["Lparen"],
+      'lraices': ["Rparen"],
+      'points': [{
+        'x': this.dataReceived['x1'][size - 2],
+        'y': this.dataReceived['fx1'][size - 2],
+      }],
+      'raices': [{
+        'x': this.dataReceived['x1'][size - 1],
+        'y': this.dataReceived['fx1'][size - 1],
+      }]
+
+    };
+    this.navCtrl.push(GraficadorPage, send);
+  }
+  
+  graph(){
+    this.submitForm();
+    this.graf = true;
   }
 
   // add the graphing page below the buttons and hide the table.
@@ -124,11 +149,12 @@ export class IncrementalSearchPage {
         if (typeof (result) == "string")
           this.showAlert("ERROR", result);
         else {
-
+          
           this.dataReceived = result;
           var temp = this.dataReceived['x1'].length;
           this.showAlert("Interval where there is a root: ",
-            "("+this.dataReceived['x1'][temp-1]+","+this.dataReceived['x1'][temp-2]+")");
+            "("+this.dataReceived['x1'][temp-2]+","+this.dataReceived['x1'][temp-1]+")");
+          if(this.graf&&this.dataReceived) this.graficador();
           this.tableComplete();
         }
       }, (err) => {

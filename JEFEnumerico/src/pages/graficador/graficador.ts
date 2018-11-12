@@ -27,6 +27,8 @@ export class GraficadorPage {
   private dataReceivedPost = {};
   private final;
   private aprox;
+  private lfinal;
+  private laprox;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -36,14 +38,9 @@ export class GraficadorPage {
     this.dataSubmit['xb'] = navParams.data['b'];
     this.aprox = navParams.data['points'];
     this.final = navParams.data['raices'];
+    this.laprox = navParams.data['lpoints'];
+    this.lfinal = navParams.data['lraices'];
     this.dataSubmit['delta'] = "0.1";
-
-    console.log("me envian");
-    console.log(navParams.data);
-
-    console.log("aprox y final")
-    console.log(this.aprox);
-    console.log(this.final);
   }
 
 
@@ -133,7 +130,7 @@ export class GraficadorPage {
         type: 'line',
         data: {
           datasets: [{
-            label: ["f"],
+            label: ["f(x)"],
             data: points,
             type: 'line',
             fill: false,
@@ -142,14 +139,14 @@ export class GraficadorPage {
             ],
             borderWidth: 0.5
           }, {
-            label: ["xm"],
+            label: this.laprox,
             type: 'bubble',
             backgroundColor: "rgba(255,0,0,0.2)",
             borderColor: "rgba(255,0,0,1)",
             radius: '3',
             data: this.aprox
           },{
-            label: ["found"],
+            label: this.lfinal,
             type: 'bubble',
             backgroundColor: "rgba(0,255,0,0.2)",
             borderColor: "rgba(0,255,0,1)",
@@ -180,7 +177,6 @@ export class GraficadorPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.dataSubmit);
     if ((this.dataSubmit['f'] != "") && (this.dataSubmit['f'] != undefined) &&
       (this.dataSubmit['xa'] != "") && (this.dataSubmit['xa'] != undefined) &&
       (this.dataSubmit['xb'] != '') && (this.dataSubmit['xb'] != undefined) &&
@@ -203,13 +199,10 @@ export class GraficadorPage {
 
   //Zona de get y post
   public postServer() {
-    console.log(this.dataSubmit);
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
         this.dataReceivedPost = result;
         this.verificarPost();
-        console.log("Me llega");
-        console.log(result);
       }, (err) => {
         console.log(err);
       });
