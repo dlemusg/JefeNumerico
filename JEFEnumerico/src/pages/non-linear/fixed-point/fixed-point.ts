@@ -16,6 +16,7 @@ export class FixedPointPage {
   private apiUrl;
   private dataSubmit = {};
   private dataReceived = {};
+  private graf = false;
 
   // build the page by assigning values to the global variables.
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -29,12 +30,12 @@ export class FixedPointPage {
     this.dataSubmit['tipoError'] = '';
 
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com//fixedpoint';
+    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/fixedpoint';
     this.table = true;
   }
 
   //Initialize the variables
-  initializationDataRecived(){
+  initializationDataRecived() {
     this.rows = [];
     this.rows = [...this.rows];
     this.dataReceived['n'] = [];
@@ -52,6 +53,7 @@ export class FixedPointPage {
   /* check if the fields are empty and show a signal, if they are empty, call 
   the postServer function */
   submitForm() {
+    this.graf = false;
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['g'] == '') {
@@ -71,8 +73,40 @@ export class FixedPointPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
-    this.showAlert("ERROR","It has not been implemented");
-    console.log("falta implementarme");
+    this.graf = true;
+    var points = []
+    var final = []
+    
+
+    for (var i = 0; i < this.dataReceived['xi'].length; i++) {
+
+      if (i == this.dataReceived['xi'].length - 1) {
+        final.push({
+          "x": this.dataReceived['xi'][i],
+          "y": this.dataReceived['fx'][i]
+        });
+      }
+      points.push({
+        "x": this.dataReceived['xi'][i],
+        "y": this.dataReceived['fx'][i]
+      });
+    }
+    var aux: number = <number><any>this.dataReceived['xi'][this.dataReceived['xi'].length-1];
+    var send = {
+      'f': this.dataSubmit['f'],
+      'a': ""+(aux-0.5),
+      'b': ""+(aux+0.3),
+      'lpoints': ["x"],
+      'lraices': ["x final"],
+      'points': points,
+      'raices': final
+    };
+    this.navCtrl.push(GraficadorPage, send);
+  }
+
+  graph() {
+    this.submitForm();
+    this.graf = true;
   }
 
   // add the graphing page below the buttons and hide the table.
@@ -127,22 +161,21 @@ export class FixedPointPage {
   /* communicates with the server sending the data, when it finishes it calls 
   the function tableComplete() */
   postServer() {
-    console.log(this.dataSubmit);
-    console.log(this.apiUrl);
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
         this.rows = [...this.rows];
         this.initializationDataRecived();
         if (typeof (result) == "string") {
           this.showAlert("ERROR", result)
-        }else {
+        } else {
           this.dataReceived = result;
-          if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1){
-            this.showAlert("root: ",this.dataReceived["raices"][0]);
+          if(this.graf) this.graficador();
+          if (this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length == 1) {
+            this.showAlert("root: ", this.dataReceived["raices"][0]);
           }
-          else{ 
+          else {
             this.tableComplete();
-            this.showAlert("Approximate root: ",this.dataReceived["raices"][0]);
+            this.showAlert("Approximate root: ", this.dataReceived["raices"][0]);
           }
         }
       }, (err) => {

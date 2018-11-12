@@ -29,6 +29,7 @@ export class GraficadorPage {
   private aprox;
   private lfinal;
   private laprox;
+  fm : any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -41,6 +42,9 @@ export class GraficadorPage {
     this.laprox = navParams.data['lpoints'];
     this.lfinal = navParams.data['lraices'];
     this.dataSubmit['delta'] = "0.1";
+    if(this.aprox != undefined)
+      this.fm = true;
+    else this.fm = false;
   }
 
 
@@ -183,6 +187,7 @@ export class GraficadorPage {
       (this.dataSubmit['delta'] != "") && (this.dataSubmit['delta'] != undefined)){
       this.postServer();
       this.verificarPost();
+      this.fm = true;
     } else {
       this.drawFunction({});
     }
