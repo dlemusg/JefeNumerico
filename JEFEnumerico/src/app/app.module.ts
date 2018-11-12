@@ -1,3 +1,4 @@
+import { GraficadorPage } from './../pages/graficador/graficador';
 import { LuSimplePage } from './../pages/system-eq/lu-simple/lu-simple';
 import { PartialPivotingPage } from './../pages/system-eq/partial-pivoting/partial-pivoting';
 import { MultipleRootsPage } from './../pages/non-linear/multiple-roots/multiple-roots';
@@ -43,7 +44,8 @@ import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivot
     GaussSimplePage,
     PartialPivotingPage,
     TotalPivotingPage,
-    LuSimplePage
+    LuSimplePage,
+    GraficadorPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivot
     GaussSimplePage,
     PartialPivotingPage,
     TotalPivotingPage,
-    LuSimplePage
+    LuSimplePage,
+    GraficadorPage
   ],
   providers: [
     StatusBar,

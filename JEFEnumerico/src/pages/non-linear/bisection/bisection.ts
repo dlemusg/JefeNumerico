@@ -17,6 +17,7 @@ export class BisectionPage {
   private apiUrl;
   private dataSubmit = {};
   private dataReceived = {};
+  private graf = false;
 
   // build the page by assigning values to the global variables.
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -43,6 +44,8 @@ export class BisectionPage {
   /* check if the fields are empty and show a signal, if they are empty, call 
   the postServer function */
   submitForm() {
+    this.graf = false;
+    console.log("2");
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['xi'] == '') {
@@ -56,6 +59,7 @@ export class BisectionPage {
     } else if (this.dataSubmit['tipoError'] == '') {
       this.showAlert("ERROR:", "The Error Type field can not be empty");
     } else {
+      console.log("3");
       this.postServer();
     }
   }
@@ -75,8 +79,37 @@ export class BisectionPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
-    this.showAlert("ERROR","It has not been implemented");
-    console.log("falta implementarme");
+    this.graf = true;
+    var points = []
+    var final = []
+
+    for(var i = 0; i < this.dataReceived['xm'].length;i++){
+
+      if(i == this.dataReceived['xm'].length - 1){
+        final.push({
+          "x": this.dataReceived['xm'][i],
+          "y": this.dataReceived['fxm'][i]
+        });
+      }
+      points.push({
+        "x": this.dataReceived['xm'][i],
+        "y": this.dataReceived['fxm'][i]
+      }); 
+    }
+
+    var send = {
+      'f': this.dataSubmit['f'],
+      'a': this.dataSubmit['xi'],
+      'b': this.dataSubmit['xs'],
+      'points': points,
+      'raices': final
+    }
+    this.navCtrl.push(GraficadorPage, send);
+  }
+
+  graph(){
+    this.submitForm();
+    this.graf = true;
   }
 
   // add the graphing page below the buttons and hide the table.
@@ -142,6 +175,8 @@ export class BisectionPage {
         }
         else {
           this.dataReceived = result;
+          console.log(result);
+          if(this.graf) this.graficador();
           if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1)
             this.showAlert("root: ",this.dataReceived["raices"][0]);
           else{ 
