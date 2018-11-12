@@ -5,7 +5,6 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 
-
 @IonicPage()
 @Component({
   selector: 'page-bisection',
@@ -169,6 +168,7 @@ export class BisectionPage {
   postServer() {
     this.HttpNonLinearProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
+        this.rows = [...this.rows];
         this.initializationDataRecived();
         if (typeof (result) == "string") {
           this.showAlert("ERROR", result)
