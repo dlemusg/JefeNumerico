@@ -1,3 +1,4 @@
+import { LuSimplePage } from './lu-simple/lu-simple';
 import { PartialPivotingPage } from './partial-pivoting/partial-pivoting';
 import { GaussSimplePage } from './gauss-simple/gauss-simple';
 import { Component } from '@angular/core';
@@ -28,6 +29,10 @@ export class SystemEqPage {
 
   goTotalPivoting(){
     this.navCtrl.push(TotalPivotingPage);
+  }
+
+  goLuSimple(){
+    this.navCtrl.push(LuSimplePage);
   }
 
   showAlert(error, subtitle) {

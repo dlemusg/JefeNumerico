@@ -1,0 +1,112 @@
+<ion-header color="secondary">
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gauss simple</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="help()">
+        <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class='pantalla'>
+
+  <ion-item id="matrixDimension">
+    <ion-input type="number" [(ngModel)]="n" name='n' placeholder="Dimension of the matrix"></ion-input>
+  </ion-item>
+  <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generar Matriz</button>
+  <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh">
+    <div *ngIf="buttonClicked">
+      <form (ngSubmit)='submitForm()'>
+        <p>Write Matrix A</p>
+        <table align="center">
+          <tr *ngFor="let i of matrix; let k = index">
+            <td *ngFor="let j of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <p>Write Vector b</p>
+        <table align="center">
+          <tr>
+            <td *ngFor="let i of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <button ion-button type="submit" color="secondary" block>calculate</button>
+      </form>
+    </div>
+    <div *ngIf="showResult">
+      <br>
+      <br>
+      <p>The solution to the system is:</p>
+      <table class="table" align="center">
+        <tr class="table">
+          <th *ngFor="let i of matrix" class="style-t-t">
+            X{{i}}
+          </th>
+        </tr>
+        <tr class="table">
+          <td *ngFor="let j of xs" class="style-t-c">
+            <p>{{j}}</p>
+          </td>
+        </tr>
+      </table>
+
+      <br>
+      <table class="table" align="center">
+        <tr class="table">
+          <th *ngFor="let i of matrix" class="style-t-t">
+            Z{{i}}
+          </th>
+        </tr>
+        <tr class="table">
+          <td *ngFor="let j of zs" class="style-t-c">
+            <p>{{j}}</p>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <p>Final matrix Ux = z:</p>
+
+      <table class="table" align="center">
+        <tr *ngFor="let i of escalonada" class="table">
+          <td *ngFor="let j of i" class="style-t-c">
+            {{j}}
+          </td>
+        </tr>
+      </table>
+      <br>
+      <p>Final matrix Lz = b:</p>
+      <table class="table" align="center">
+          <tr *ngFor="let i of L" class="table">
+            <td *ngFor="let j of i" class="style-t-c">
+              {{j}}
+            </td>
+          </tr>
+        </table>
+      <br>
+      <br>
+      <button ion-button (click)="steps()" color="secondary" block>Steps</button>
+    </div>
+    <div *ngIf="showStep">
+      <ion-list *ngFor="let i of matrix">
+        <p>Stage{{i}}</p>
+        <br>
+        <table class="table" scroll="true" align="center">
+          <tr *ngFor="let j of this.dataReceived[i]" class="table">
+            <td *ngFor="let z of j" class="style-t-c">
+              {{z}}
+            </td>
+          </tr>
+        </table>
+      </ion-list>
+    </div>
+  </ion-scroll>
+</ion-content>
