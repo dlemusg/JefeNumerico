@@ -1,9 +1,11 @@
+import { DoolittlePage } from './doolittle/doolittle';
 import { LuSimplePage } from './lu-simple/lu-simple';
 import { PartialPivotingPage } from './partial-pivoting/partial-pivoting';
 import { GaussSimplePage } from './gauss-simple/gauss-simple';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TotalPivotingPage } from './total-pivoting/total-pivoting';
+import { LuPartialPage } from './lu-partial/lu-partial';
 
 @IonicPage()
 @Component({
@@ -34,6 +36,15 @@ export class SystemEqPage {
   goLuSimple(){
     this.navCtrl.push(LuSimplePage);
   }
+
+  goLuPartial(){
+    this.navCtrl.push(LuPartialPage);
+  }
+
+  goDoolittle(){
+    this.navCtrl.push(DoolittlePage);
+  }
+
 
   showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({

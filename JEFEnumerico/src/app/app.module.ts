@@ -1,3 +1,4 @@
+import { DoolittlePage } from './../pages/system-eq/doolittle/doolittle';
 import { GraficadorPage } from './../pages/graficador/graficador';
 import { LuSimplePage } from './../pages/system-eq/lu-simple/lu-simple';
 import { PartialPivotingPage } from './../pages/system-eq/partial-pivoting/partial-pivoting';
@@ -25,6 +26,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-linear';
 import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
 import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivoting';
+import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivot
     PartialPivotingPage,
     TotalPivotingPage,
     LuSimplePage,
-    GraficadorPage
+    GraficadorPage,
+    LuPartialPage,
+    DoolittlePage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,9 @@ import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivot
     PartialPivotingPage,
     TotalPivotingPage,
     LuSimplePage,
-    GraficadorPage
+    GraficadorPage,
+    LuPartialPage,
+    DoolittlePage
   ],
   providers: [
     StatusBar,

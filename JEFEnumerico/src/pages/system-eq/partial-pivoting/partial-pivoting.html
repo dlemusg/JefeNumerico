@@ -17,7 +17,7 @@
   <ion-item id="matrixDimension">
     <ion-input type="number" [(ngModel)]="n" name='n' placeholder="Dimension of the matrix"></ion-input>
   </ion-item>
-  <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generar Matriz</button>
+  <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate Matrix</button>
   <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh">
     <div *ngIf="buttonClicked">
       <form (ngSubmit)='submitForm()'>
