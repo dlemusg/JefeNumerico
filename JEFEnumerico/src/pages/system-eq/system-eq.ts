@@ -1,3 +1,4 @@
+import { CholeskyPage } from './cholesky/cholesky';
 import { CroutPage } from './crout/crout';
 import { DoolittlePage } from './doolittle/doolittle';
 import { LuSimplePage } from './lu-simple/lu-simple';
@@ -48,6 +49,10 @@ export class SystemEqPage {
 
   goCrout(){
     this.navCtrl.push(CroutPage);
+  }
+
+  goCholesky(){
+    this.navCtrl.push(CholeskyPage);
   }
 
 

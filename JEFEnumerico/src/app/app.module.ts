@@ -1,3 +1,4 @@
+import { CholeskyPage } from './../pages/system-eq/cholesky/cholesky';
 import { CroutPage } from './../pages/system-eq/crout/crout';
 import { DoolittlePage } from './../pages/system-eq/doolittle/doolittle';
 import { GraficadorPage } from './../pages/graficador/graficador';
@@ -51,7 +52,8 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     GraficadorPage,
     LuPartialPage,
     DoolittlePage,
-    CroutPage
+    CroutPage,
+    CholeskyPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     GraficadorPage,
     LuPartialPage,
     DoolittlePage,
-    CroutPage
+    CroutPage,
+    CholeskyPage
   ],
   providers: [
     StatusBar,
