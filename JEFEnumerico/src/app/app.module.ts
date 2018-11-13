@@ -1,3 +1,4 @@
+import { CroutPage } from './../pages/system-eq/crout/crout';
 import { DoolittlePage } from './../pages/system-eq/doolittle/doolittle';
 import { GraficadorPage } from './../pages/graficador/graficador';
 import { LuSimplePage } from './../pages/system-eq/lu-simple/lu-simple';
@@ -49,7 +50,8 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     LuSimplePage,
     GraficadorPage,
     LuPartialPage,
-    DoolittlePage
+    DoolittlePage,
+    CroutPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     LuSimplePage,
     GraficadorPage,
     LuPartialPage,
-    DoolittlePage
+    DoolittlePage,
+    CroutPage
   ],
   providers: [
     StatusBar,

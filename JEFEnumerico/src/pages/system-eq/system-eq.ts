@@ -1,3 +1,4 @@
+import { CroutPage } from './crout/crout';
 import { DoolittlePage } from './doolittle/doolittle';
 import { LuSimplePage } from './lu-simple/lu-simple';
 import { PartialPivotingPage } from './partial-pivoting/partial-pivoting';
@@ -43,6 +44,10 @@ export class SystemEqPage {
 
   goDoolittle(){
     this.navCtrl.push(DoolittlePage);
+  }
+
+  goCrout(){
+    this.navCtrl.push(CroutPage);
   }
 
 
