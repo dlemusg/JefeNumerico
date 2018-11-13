@@ -74,8 +74,8 @@ export class FixedPointPage {
   // add the graphing page below the buttons and hide the table.
   graficador() {
     this.graf = true;
-    var points = []
-    var final = []
+    var points = [];
+    var final = [];
     
 
     for (var i = 0; i < this.dataReceived['xi'].length; i++) {
