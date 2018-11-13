@@ -47,10 +47,13 @@ export class PartialPivotingPage {
   private help() {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      subTitle: ` <p> Remember: </ p>
-                    <ul>
-                      <li> Matrix A must be invertible </li>
-                    </ul>`,
+      message: ` <ul>
+                    <li> Matrix A must be invertible </li>
+                    <li> for more information go to the 
+                    <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/direct-methods/gauss-with-partial-pivoting">
+                    Page</a>
+                    </li>
+                </ul>`,
       buttons: ['OK']
     });
     alert.present();
@@ -126,6 +129,7 @@ export class PartialPivotingPage {
         console.log(result);
         this.results();
       }, (err) => {
+        this.showAlert("ERORR:", "verify parameters entered");
         console.log(err);
       });
   }

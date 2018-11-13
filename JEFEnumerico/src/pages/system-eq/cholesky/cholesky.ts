@@ -47,10 +47,12 @@ export class CholeskyPage {
   private help () {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      subTitle: ` <p> Remember: </ p>
-                    <ul>
+      message: ` <ul>
                       <li> Matrix A must be invertible </li>
-                      <li> Avoid putting zeros in the diagonal </li>
+                      <li> for more information go to the 
+                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/direct-methods/matrix-factorization/cholesky">
+                      Page</a>
+                    </li>
                     </ul>`,
       buttons: ['OK']
     });

@@ -46,10 +46,13 @@ export class GaussSimplePage {
   private help () {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      subTitle: ` <p> Remember: </ p>
-                    <ul>
+      message: ` <ul>
                       <li> Matrix A must be invertible </li>
-                      <li> Avoid putting zeros in the diagonal </li>
+                      <li> Avoid putting zeros in the diagonal</li>
+                      <li> for more information go to the 
+                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/direct-methods/simple-gaussian-elimination">
+                      Page</a>
+                    </li>
                     </ul>`,
       buttons: ['OK']
     });
@@ -126,6 +129,7 @@ export class GaussSimplePage {
       console.log(result);
       this.results();
     }, (err) => {
+      this.showAlert("ERORR:", "verify parameters entered");
       console.log(err);
     });
   }
