@@ -4,43 +4,61 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 import { stringify } from '@angular/core/src/render3/util';
-
 @IonicPage()
 @Component({
-  selector: 'page-cholesky',
-  templateUrl: 'cholesky.html',
+  selector: 'page-jacobi',
+  templateUrl: 'jacobi.html',
 })
-export class CholeskyPage {
-  private apiUrl  = 'https://stormy-depths-76714.herokuapp.com/cholesky';
+export class JacobiPage {
+  private apiUrl  = 'https://stormy-depths-76714.herokuapp.com/jacobi';
   
   showResult = false;
 
   datasubmit = {
     A : {},
-    b : {},
+    b : [],
+    x0: []
   };
 
   xs = [];
-  zs = [];
   escalonada : any;
-  L: any;
-
   private dataReceived = {};
   matrix: Array<string> = [];
   n: any;
   input: string;
   private buttonClicked; 
   private showStep;
+  private table;
+
+  private columns;
+  private rows;
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, 
     public navParams: NavParams, public HttpNonLinearProvider:
     HttpNonLinearProvider) {
       this.buttonClicked = false;
       this.n = "";
       this.showStep = false;
+      this.columns = [];
+      this.rows=[];
+      this.table = true;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CholeskyPage');
+    console.log('ionViewDidLoad GaussSimplePage');
+  }
+
+  //Initialize the variables
+  initializationDataRecived(){
+    this.rows = [];
+    this.columns = [];
+    
+    for(var i = 0; i < this.n;i++){
+      this.dataReceived[i.toString()] = [];
+    }
+    this.dataReceived['n'] = [];
+    this.dataReceived['Error'] = [];
+    this.columns = [...this.columns];
+    this.rows = [...this.rows];
   }
 
   //open the button help
@@ -49,8 +67,14 @@ export class CholeskyPage {
       title: 'Help!',
       message: ` <ul>
                       <li> Matrix A must be invertible </li>
+                      <li> <b> Tol: </b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                      ej: 0.001 = 1e-3</li>
+                      <br>
+                      <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                        that the method will try to find the interval</li>
+                      <li> <b>x0:</b> is the initial value, it is a number </li>
                       <li> for more information go to the 
-                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/direct-methods/matrix-factorization/cholesky">
+                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/iterative-methods/jacobi">
                       Page</a>
                     </li>
                     </ul>`,
@@ -67,6 +91,7 @@ export class CholeskyPage {
     this.datasubmit = {
       A : {},
       b : [],
+      x0: []
     };
     this.input = "<ion-input class='cell'></ion-input>";
     if(this.n == "" || this.n == " "){
@@ -79,6 +104,41 @@ export class CholeskyPage {
       }
     }
   }
+
+  // complete the table with the values sent by the server
+ /* tableComplete() {
+    this.table = false;//people can see the table
+    var i;
+    this.columns.push({name: this.n.toString})
+    for (i = 0; i <  this.n; i++) {
+      this.columns.push({name: "x"+i});
+      this.rows["x"+i]= []
+      for(var j = 0; j < this.dataReceived['n'].length;j++){
+        json = {
+          "x"+i: this.dataReceived["x"+i][j]
+        }
+        this.rows["x"+i].append(this.dataReceived["x"+i][j]);
+        this.rows["n"].append()
+      }
+    }
+      var json = {}
+      for(var j = 0; j < this.n;j++){
+       
+        = {
+          x+i: 
+          "xi": this.dataReceived['xi'][i],
+          "xs": this.dataReceived['xs'][i],
+          "xm": this.dataReceived['xm'][i],
+          "fx": this.dataReceived['fxm'][i],
+          "error": this.dataReceived['error'][i],
+        };
+      }
+      
+      this.rows.push(json);
+      this.rows = [...this.rows];
+    }
+    this.columns.push({name: "Error"})
+  }*/
 
   //recibe data and verify if vector b is correct
   submitForm(){
@@ -95,14 +155,13 @@ export class CholeskyPage {
     this.showStep = false;
     if(this.dataReceived['error'] == null ){
       this.xs = this.dataReceived['X'];
-      this.zs = this.dataReceived['Z'];
-      this.L = this.dataReceived['L'];
-      this.escalonada = this.dataReceived['U'];
+      this.escalonada = this.dataReceived[(this.n-1).toString()];
       console.log(this.escalonada);
     }else{
       this.showAlert("ERORR:",this.dataReceived['error']);
     }
   }
+
 
   //show alerts
   showAlert(error, subtitle) {
@@ -114,11 +173,6 @@ export class CholeskyPage {
     alert.present();
   }
 
-  //show steps and hide view the normal result
-  steps(){
-    this.showResult = false;
-    this.showStep = true;
-  }
 
   //conect with server end send data
   public postServer() {
@@ -128,7 +182,7 @@ export class CholeskyPage {
       this.showResult = true;
       console.log("ME LLEGA DEL SERVIDOR COMO RTA");
       console.log(result);
-      this.results();
+      //this.results();
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");
       console.log(err);

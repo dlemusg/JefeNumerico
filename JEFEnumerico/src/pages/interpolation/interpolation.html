@@ -12,9 +12,38 @@
     <ion-title>Interpolation</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
-  <h3>aqui van los diferentes metodos</h3>
-  <p>
-    :D
-  </p>
+  <ion-grid>
+    <ion-row class="espaciadoSuperior">
+    </ion-row>
+    <ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goLagrange()" class="button">Lagrange</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Newton</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Linear spline</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Quadratic spline</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Cubic spline</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

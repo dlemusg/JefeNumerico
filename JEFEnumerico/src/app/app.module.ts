@@ -1,3 +1,4 @@
+import { JacobiPage } from './../pages/system-eq/jacobi/jacobi';
 import { CholeskyPage } from './../pages/system-eq/cholesky/cholesky';
 import { CroutPage } from './../pages/system-eq/crout/crout';
 import { DoolittlePage } from './../pages/system-eq/doolittle/doolittle';
@@ -29,6 +30,7 @@ import { HttpNonLinearProvider } from '../providers/http-non-linear/http-non-lin
 import { GaussSimplePage } from '../pages/system-eq/gauss-simple/gauss-simple';
 import { TotalPivotingPage } from '../pages/system-eq/total-pivoting/total-pivoting';
 import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
+import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     LuPartialPage,
     DoolittlePage,
     CroutPage,
-    CholeskyPage
+    CholeskyPage,
+    JacobiPage,
+    LagrangePage
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,9 @@ import { LuPartialPage } from '../pages/system-eq/lu-partial/lu-partial';
     LuPartialPage,
     DoolittlePage,
     CroutPage,
-    CholeskyPage
+    CholeskyPage,
+    JacobiPage,
+    LagrangePage
   ],
   providers: [
     StatusBar,

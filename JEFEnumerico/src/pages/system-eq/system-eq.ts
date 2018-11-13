@@ -1,3 +1,4 @@
+import { JacobiPage } from './jacobi/jacobi';
 import { CholeskyPage } from './cholesky/cholesky';
 import { CroutPage } from './crout/crout';
 import { DoolittlePage } from './doolittle/doolittle';
@@ -53,6 +54,10 @@ export class SystemEqPage {
 
   goCholesky(){
     this.navCtrl.push(CholeskyPage);
+  }
+
+  goJacobi(){
+    this.navCtrl.push(JacobiPage);
   }
 
 
