@@ -95,7 +95,7 @@ export class FixedPointPage {
     var send = {
       'f': this.dataSubmit['f'],
       'a': ""+(aux-0.5),
-      'b': ""+(aux+0.3),
+      'b': ""+(aux+0.5),
       'lpoints': ["x"],
       'lraices': ["x final"],
       'points': points,

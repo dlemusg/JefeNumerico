@@ -16,6 +16,7 @@ export class NewtonPage {
   private apiUrl;
   private dataSubmit = {};
   private dataReceived = {};
+  private graf = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, public HttpNonLinearProvider:
@@ -50,6 +51,7 @@ export class NewtonPage {
   /* check if the fields are empty and show a signal, if they are empty, call 
   the postServer function */
   submitForm() {
+    this.graf = false;
     if (this.dataSubmit['f'] == '') {
       this.showAlert("ERROR:", "The field f(x) can not be empty");
     } else if (this.dataSubmit['x0'] == '') {
@@ -67,8 +69,39 @@ export class NewtonPage {
 
   // add the graphing page below the buttons and hide the table.
   graficador() {
-    this.showAlert("ERROR","It has not been implemented");
-    console.log("falta implementarme");
+    this.graf = true;
+    var points = []
+    var final = []
+
+    for(var i = 0; i < this.dataReceived['x0'].length;i++){
+
+      if(i == this.dataReceived['x0'].length - 1){
+        final.push({
+          "x": this.dataReceived['x0'][i],
+          "y": this.dataReceived['fx'][i]
+        });
+      }
+      points.push({
+        "x": this.dataReceived['x0'][i],
+        "y": this.dataReceived['fx'][i]
+      }); 
+    }
+    var aux: number = <number><any>this.dataReceived['x0'][this.dataReceived['x0'].length-1];
+    var send = {
+      'f': this.dataSubmit['f'],
+      'a': ""+(aux-0.5),
+      'b': ""+(aux+0.3),
+      'lpoints':["xm"],
+      'lraices': ["xm final"],
+      'points': points,
+      'raices': final
+    };
+    this.navCtrl.push(GraficadorPage, send);
+  }
+
+  graph(){
+    this.submitForm();
+    this.graf = true;
   }
 
   // add the graphing page below the buttons and hide the table.
@@ -122,6 +155,7 @@ export class NewtonPage {
           this.showAlert("ERROR", result)
         }else {
           this.dataReceived = result;
+          if(this.graf) this.graficador();
           if(this.dataReceived['n'].length == 0 && this.dataReceived['raices'].length  == 1){
             this.showAlert("root: ",this.dataReceived["raices"][0]);
           }
