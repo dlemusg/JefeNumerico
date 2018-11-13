@@ -114,18 +114,21 @@ export class FixedPointPage {
     let alert = this.alertCtrl.create({
       title: 'Help!',
       message: `<ul>
-                  <li>We seek to solve the problem of x = g (x) </li>
-                  <br> <br>
-                  <li>If g is a continuous function in the interval [a, b] and
-                      for all x that belongs [a, b] it is satisfied that g (x)
-                      belongs [a, b] so g has a fixed point in [a , b] 
+                  <li>We seek to solve the problem of x = g(x) </li>
+                  <br>
+                  <li> <b>f(x):</b> must be a continuous function. x must be minuscule </li>
+                  <br>
+                  <li> <b>x0:</b> is the initial value, it is a number </li>
+                  <li> <b> Tol: </b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                  ej: 0.001 = 1e-3</li>
+                  <br>
+                  <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                    that the method will try to find the interval</li>
+                  <br>
+                  <li> for more information go to the 
+                    <a href="https://sites.google.com/view/jefeanumerico/non-linear-equations/open-methods/fixed-point">
+                    Page</a>
                   </li>
-                  <br> <br>
-                  <li>If for all x that belongs (a, b) it is satisfied that 
-                      g'(x) exists in (a, b) and |g'(x)| <= k <1 so g has a 
-                      single fixed point p in [a, b] 
-                  </li>
-                  <br> <br>
                   </ul>`,
       buttons: ['OK']
     });

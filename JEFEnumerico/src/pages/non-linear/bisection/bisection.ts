@@ -116,19 +116,25 @@ export class BisectionPage {
     let alert = this.alertCtrl.create({
       title: 'Help!',
       message: ` <ul>
-                    <li> f (x) must be a continuous function </ li>
-                    <br> <br>
+                    <li> <b>f(x):</b> must be a continuous function. x must be minuscule </li>
+                    <br>
+                    <li> <b>xi - xs:</b> son el intervalo donde debe haber una raiz. xi < xs </li>
+                    <br>
+                    <li> <b>f(x):</b> must be a continuous function. x must be minuscule </li>
+                    <br>
+                    <li> <b> Tol: </b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                    ej: 0.001 = 1e-3</li>
+                    <br>
+                    <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                      that the method will try to find the interval</li>
+                    <br>
                     <li> To find an adequate interval [a, b] help yourself with
                      incremental searches </ li>
-                    <br> <br>
-                    <li> There is a single root if it is true that f is 
-                    continuous in [a, b], f (a) * f (b) <0, f is differentiable 
-                    in (a, b) and f '(x) does not change sign for all x that 
-                    belongs [a, b] </ li>
-                    <br> <br>
-                    <li> The elevation for the absolute error in each stage is
-                    En = (In - 1) / 2 </ li>
-                    <br> <br>
+                     <li> for more information go to the 
+                      <a href="https://sites.google.com/view/jefeanumerico/non-linear-equations/Pagina-Bisection/bisection">
+                      Page</a>
+                    </li>
+                    <br> 
                   </ ul> `,
       buttons: ['OK']
     });

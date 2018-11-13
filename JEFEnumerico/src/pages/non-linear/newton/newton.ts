@@ -109,8 +109,20 @@ export class NewtonPage {
     let alert = this.alertCtrl.create({
       title: 'Help!',
       message: `<ul>
-                  falto implementarme
-                  </ul>`,
+                  <li> <b>f(x):</b> must be a continuous function. x must be minuscule </li>
+                  <br>
+                  <li> <b>x0-xi:</b> are the initial value, they are a number </li>
+                  <li> <b> Tol: </b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                  ej: 0.001 = 1e-3</li>
+                  <br>
+                  <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                    that the method will try to find the interval</li>
+                  <br>
+                  <li> for more information go to the 
+                    <a href="https://sites.google.com/view/jefeanumerico/non-linear-equations/open-methods/newton">
+                    Page</a>
+                  </li>
+                </ul>`,
       buttons: ['OK']
     });
     alert.present();

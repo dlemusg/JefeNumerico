@@ -100,16 +100,18 @@ export class IncrementalSearchPage {
     let alert = this.alertCtrl.create({
       title: 'Help!',
       message: `<ul>
-                  <li> f(x) must be a continuous function </li>
-                  <br><br>
-                  <li> If f(x) is defined in [a,b] and it follows that: 
-                  f(a) * f(b) < 0, then there is some Xm in [a,b] that is root </li>
-                  <br> <br>
-                  <li> There is a single root if it is true that f is continuous
-                      in [a, b], f (a) * f (b) <0, f is differentiable in (a, b)
-                      and f '(x) does not change sign for all x that belongs [a,b] 
+                  <li> <b>f(x):</b> must be a continuous function, x must be minuscule </li>
+                  <li> <b>x0:</b> is an integer, it is the value by which the method 
+                      starts looking for the interval </ li>
+                  <li> <b>Delta:</b> is a number with or without decimals; is the change 
+                      of x </ li>
+                  <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                      that the method will try to find the interval</li>
+                  <li> for more information go to the 
+                      <a href="https://sites.google.com/view/jefeanumerico/non-linear-equations/incremental-searches">
+                      Page</a>
                   </li>
-                </ul> `,
+                </ ul> `,
       buttons: ['OK']
     });
     alert.present();

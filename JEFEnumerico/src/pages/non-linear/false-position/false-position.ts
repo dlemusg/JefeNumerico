@@ -113,21 +113,25 @@ export class FalsePositionPage {
   help() {
     let alert = this.alertCtrl.create({
       title: 'Help!',
-      message: `<ul>
-                  <li> This method retains all the characteristics and conditions
-                      that the bisection method possesses except for how to 
-                      calculate the intermediate point of the interval. 
+      message: ` <ul>
+                  <li> <b>f(x):</b> must be a continuous function. x must be minuscule </li>
+                  <br>
+                  <li> <b>xi - xs:</b> are the interval where there should be a root. xi < xs </li>
+                  <br>
+                  <li> <b> Tol: </b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                  ej: 0.001 = 1e-3</li>
+                  <br>
+                  <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
+                    that the method will try to find the interval</li>
+                  <br>
+                  <li> To find an adequate interval [a, b] help yourself with
+                  incremental searches </ li>
+                  <li> for more information go to the 
+                    <a href="https://sites.google.com/view/jefeanumerico/non-linear-equations/Pagina-Bisection/false-rule">
+                    Page</a>
                   </li>
-                  <br><br>
-                  <li> We say that methods by closed intervals always converge,
-                      sometimes False Rule can be a Bisection improvement 
-                  </ li>
-                  <br> <br>
-                  <li> The problem of closed interval methods is the slowness
-                      of convergence, that is, they require many iterations. 
-                  </li>
-                  <br> <br>
-                </ul>`,
+                  <br> 
+                </ ul> `,
       buttons: ['OK']
     });
     alert.present();

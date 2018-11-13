@@ -54,11 +54,10 @@ export class GraficadorPage {
       subTitle: `<p> Enter the following information: </ p>
                 <ul>
                   <li> <b> fx: </ b> Function to be evaluated </ li>
-                  <li> <b> xa, xb: </ b> Initial interval </ li>
-                  <li> <b> Tolerance: </ b> Response quality </ li>
-                  <li> <b> Num. Iters: </ b> Times executed </ b> </ li>
-                  <li> <b> Absolute: </ b> Absolute Error </ b> </ li>
-                  <li> <b> Relative: </ b> Relative Error </ b> </ li>
+                  <li> <b> xa, xb: </ b> Initial interval, xa < xb </ li>
+                  <li> <b> Tolerance: </ b> Response quality; it have to be a number, you can use 'e' to replace 'x10' 
+                    ej: 0.001 = 1e-3</ li>
+                  <li> <b> Num. Iters: </ b> Times executed; it have to be a integer </ b> </ li>
                 </ ul> `,
       buttons: ['OK']
     });
