@@ -104,41 +104,40 @@ export class JacobiPage {
       }
     }
   }
+  private addColumns(){
+    var x;
+    for(var i = 0; i <= this.n;i++){
+      if(i == 0) this.columns.push({name: 'n'});
+      else{
+        let x = "x" + i.toString();
+        this.columns.push(
+          { name: x, sortable: false}
+        );
+      }
+    }
+    this.columns.push({name: 'error'})
+  }
 
-  // complete the table with the values sent by the server
- /* tableComplete() {
-    this.table = false;//people can see the table
-    var i;
-    this.columns.push({name: this.n.toString})
-    for (i = 0; i <  this.n; i++) {
-      this.columns.push({name: "x"+i});
-      this.rows["x"+i]= []
-      for(var j = 0; j < this.dataReceived['n'].length;j++){
-        json = {
-          "x"+i: this.dataReceived["x"+i][j]
-        }
-        this.rows["x"+i].append(this.dataReceived["x"+i][j]);
-        this.rows["n"].append()
+  private addRows(){
+    for(var i = 0;i < this.dataReceived['n'].length;i++){
+      var json = {};
+      json['n'] = this.dataReceived['n'][i];
+      json['error'] = this.dataReceived['Error'][i];
+      for(var j = 0; j< this.n; j++ ){
+        let x = "x" + (j+1).toString();
+        json[x] = this.dataReceived[j.toString()][i];
       }
-    }
-      var json = {}
-      for(var j = 0; j < this.n;j++){
-       
-        = {
-          x+i: 
-          "xi": this.dataReceived['xi'][i],
-          "xs": this.dataReceived['xs'][i],
-          "xm": this.dataReceived['xm'][i],
-          "fx": this.dataReceived['fxm'][i],
-          "error": this.dataReceived['error'][i],
-        };
-      }
-      
       this.rows.push(json);
-      this.rows = [...this.rows];
     }
-    this.columns.push({name: "Error"})
-  }*/
+  }
+  // complete the table with the values sent by the server
+  tableComplete() {
+    this.table = false;//people can see the table
+    this.addColumns();
+    this.addRows();
+    this.rows = [...this.rows];
+    this.columns = [...this.columns];
+  }
 
   //recibe data and verify if vector b is correct
   submitForm(){
@@ -182,6 +181,10 @@ export class JacobiPage {
       this.showResult = true;
       console.log("ME LLEGA DEL SERVIDOR COMO RTA");
       console.log(result);
+      if (typeof (result) == "string") {
+        this.showAlert("ERROR:", result);
+      }
+      this.tableComplete();
       //this.results();
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");
