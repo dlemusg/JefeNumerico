@@ -33,15 +33,19 @@ export class LagrangePage {
   private showmatriz = false;
   private points = [];
 
+  //constructor of class
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController,
     public HttpNonLinearProvider: HttpNonLinearProvider) {
     this.n = '';
   }
 
+  //ever draw a function
   ionViewDidLoad() {
     this.drawFunction({});
   }
+
+  //create the fields to input x's and y's
   createMatrix() {
     this.showmatriz = true;
     this.showResult = false;
@@ -53,12 +57,12 @@ export class LagrangePage {
     };
 
     this.matrix = [];
-    this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
     }
   }
 
+  //show a alert in thel screen
   showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
       title: error,
@@ -68,6 +72,7 @@ export class LagrangePage {
     alert.present();
   }
 
+  //take the fields
   submitForm(){
     if (this.datasubmit.x.length != this.n)
       this.showAlert("ERROR:", "X's are not complete");
@@ -76,18 +81,21 @@ export class LagrangePage {
     else this.postServer();
   }
 
+  //the help
   private help() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
+      title: 'Help',
       subTitle: `<ul>
-                    <li> <b> Number of Points: </ b> Number of points to be interpolated </ li>
-                    <li> <b> The point to evaluate in the function must be in the interval </b> </li>
+                    <li><b> Number of Points: </b> Number of points to be interpolated </li>
+                    <br>
+                    <li>The point to evaluate in the function must be in the interval</li>
                   </ul> `,
       buttons: ['OK']
     });
     alert.present();
   }
 
+  //put the variables in their camp
   private results() {
     if (this.dataReceived['error'] == null) {
       this.funcion = this.dataReceived['P'];
@@ -106,6 +114,7 @@ export class LagrangePage {
     }
   }
 
+  //comunicate with serve
   public postServer() {
     console.log("ENVIARE");
     console.log(this.datasubmit)
@@ -122,6 +131,7 @@ export class LagrangePage {
       });
   }
 
+  //draw a function in screen
   drawFunction(points) {
     this.lineChart = new Chart(this.line.nativeElement, {
       type: 'line',
