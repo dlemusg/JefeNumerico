@@ -16,8 +16,7 @@
 
   <ion-grid>
     <ion-item id="matrixDimension">
-      <ion-label>Number of points</ion-label>
-      <ion-input type="number" [(ngModel)]="n" name='n' color="black"></ion-input>
+      <ion-input type="number" [(ngModel)]="n" name='n' color="black" placeholder="Number of points"></ion-input>
     </ion-item>
 
     <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate Matrix</button>
@@ -39,6 +38,8 @@
           </tr>
           <br>
         </table>
+        <ion-label>Point to evaluate(optional)</ion-label>
+        <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.v" [ngModelOptions]="{standalone: true}"></ion-input>
         <button ion-button type="submit" color="secondary" block>Calculate</button>
       </form>
     </div>
@@ -46,14 +47,34 @@
   <div *ngIf="showResult">
     <ion-card>
       <ion-card-content>
-        <ion-list *ngFor="let i of L">
-          <br><br>
-          <b><em>{{i}}</em></b>
-        </ion-list>
+        <b><em>L's</em></b>
         <br><br>
-        <b>{{eval}}</b>
-
+        <ion-list *ngFor="let i of L">
+          {{i}}
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <b><em>polynomial</em></b>
+        <br><br>
+        {{funcion}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <b><em>P({{datasubmit.v}}) = {{eval}}</em></b>
       </ion-card-content>
     </ion-card>
   </div>
+  <ion-card>
+    <ion-card-header>
+      <h2>Graph</h2>
+    </ion-card-header>
+  
+    <ion-card-content width="400" height="400">
+      <canvas #line drawTicks="false"></canvas>
+    </ion-card-content>
+  </ion-card>
+ 
 </ion-content>
