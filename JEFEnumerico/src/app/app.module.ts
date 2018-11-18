@@ -1,3 +1,4 @@
+import { CubicPage } from './../pages/interpolation/cubic/cubic';
 import { QuadraticPage } from './../pages/interpolation/quadratic/quadratic';
 import { LinearPage } from './../pages/interpolation/linear/linear';
 import { JacobiPage } from './../pages/system-eq/jacobi/jacobi';
@@ -61,7 +62,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     JacobiPage,
     LagrangePage,
     LinearPage,
-    QuadraticPage
+    QuadraticPage,
+    CubicPage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     JacobiPage,
     LagrangePage,
     LinearPage,
-    QuadraticPage
+    QuadraticPage,
+    CubicPage
   ],
   providers: [
     StatusBar,

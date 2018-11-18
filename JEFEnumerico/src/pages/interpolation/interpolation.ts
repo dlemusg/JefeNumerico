@@ -1,3 +1,4 @@
+import { CubicPage } from './cubic/cubic';
 import { QuadraticPage } from './quadratic/quadratic';
 import { LinearPage } from './linear/linear';
 import { LagrangePage } from './lagrange/lagrange';
@@ -26,6 +27,10 @@ export class InterpolationPage {
 
   goQuadratic(){
     this.navCtrl.push(QuadraticPage);
+  }
+
+  goCubic(){
+    this.navCtrl.push(CubicPage);
   }
 
   showAlert(error, subtitle) {
