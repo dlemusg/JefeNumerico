@@ -19,7 +19,7 @@
       <ion-input type="number" [(ngModel)]="n" name='n' color="black" placeholder="Number of points"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate Matrix</button>
+    <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate points</button>
     <div *ngIf="showmatriz">
       <form (ngSubmit)='submitForm()'>
         <p>write points</p>

@@ -1,3 +1,4 @@
+import { LinearPage } from './../pages/interpolation/linear/linear';
 import { JacobiPage } from './../pages/system-eq/jacobi/jacobi';
 import { CholeskyPage } from './../pages/system-eq/cholesky/cholesky';
 import { CroutPage } from './../pages/system-eq/crout/crout';
@@ -57,7 +58,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     CroutPage,
     CholeskyPage,
     JacobiPage,
-    LagrangePage
+    LagrangePage,
+    LinearPage
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     CroutPage,
     CholeskyPage,
     JacobiPage,
-    LagrangePage
+    LagrangePage,
+    LinearPage
   ],
   providers: [
     StatusBar,

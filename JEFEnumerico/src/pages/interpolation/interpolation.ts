@@ -1,3 +1,4 @@
+import { LinearPage } from './linear/linear';
 import { LagrangePage } from './lagrange/lagrange';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -17,6 +18,9 @@ export class InterpolationPage {
   }
   goLagrange(){
     this.navCtrl.push(LagrangePage);
+  }
+  goLinear(){
+    this.navCtrl.push(LinearPage);
   }
 
   showAlert(error, subtitle) {

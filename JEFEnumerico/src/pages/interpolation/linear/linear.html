@@ -1,0 +1,74 @@
+<ion-header color="secondary">
+    <ion-navbar color="secondary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Spline linear</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only color="royal" (click)="help()">
+          <ion-icon name="md-help-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <ion-grid>
+      <ion-item id="matrixDimension">
+        <ion-input type="number" [(ngModel)]="n" name='n' color="black" placeholder="Number of points"></ion-input>
+      </ion-item>
+  
+      <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate Points</button>
+      <div *ngIf="showmatriz">
+        <form (ngSubmit)='submitForm()'>
+          <p>write points</p>
+          <table align="center">
+            <tr>
+              <td>X:</td>
+              <td>Y:</td>
+            </tr>
+            <tr *ngFor="let i of matrix; let k = index">
+              <td>
+                <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.x[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+              </td>
+              <td>
+                <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.y[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+              </td>
+            </tr>
+            <br>
+          </table>
+          <ion-label>Point to evaluate(optional)</ion-label>
+          <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.v" [ngModelOptions]="{standalone: true}"></ion-input>
+          <button ion-button type="submit" color="secondary" block>Calculate</button>
+        </form>
+      </div>
+    </ion-grid>
+    <div *ngIf="showResult">
+      <ion-card>
+        <ion-card-content>
+          <b><em>polynomial</em></b>
+          <ion-list *ngFor="let i of funcion">
+          
+          <br><br>
+          <li>{{i}}</li>
+        </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <b><em>P({{datasubmit.v}}) = {{eval}}</em></b>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-card>
+      <ion-card-header>
+        <h2>Graph</h2>
+      </ion-card-header>
+    
+      <ion-card-content width="400" height="400">
+        <canvas #line drawTicks="false"></canvas>
+      </ion-card-content>
+    </ion-card>
+   
+  </ion-content>
