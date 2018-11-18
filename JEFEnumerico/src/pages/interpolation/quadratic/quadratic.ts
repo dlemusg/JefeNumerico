@@ -15,7 +15,7 @@ export class QuadraticPage {
   @ViewChild('line') line;
   private lineChart: any;
 
-  private apiUrl = 'https://stormy-depths-76714.herokuapp.com/lineal';
+  private apiUrl = 'https://stormy-depths-76714.herokuapp.com/cuadratico';
 
   private showResult = false;
 
