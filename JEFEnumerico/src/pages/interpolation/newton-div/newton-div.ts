@@ -7,14 +7,15 @@ import { Chart } from 'chart.js';
 
 @IonicPage()
 @Component({
-  selector: 'page-linear',
-  templateUrl: 'linear.html',
+  selector: 'page-newton-div',
+  templateUrl: 'newton-div.html',
 })
-export class LinearPage {
+export class NewtonDivPage {
+
   @ViewChild('line') line;
   private lineChart: any;
 
-  private apiUrl = 'https://stormy-depths-76714.herokuapp.com/lineal';
+  private apiUrl = 'https://stormy-depths-76714.herokuapp.com/newtondif';
 
   private showResult = false;
 
@@ -104,13 +105,13 @@ export class LinearPage {
       this.points = [];
 
       //put the polinomials in the screen
-      for(var i = 0 ; i < this.dataReceived['P'].length ; i++)
-        this.funcion.push(this.dataReceived['P'][i]+ "\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + this.dataReceived['R'][i]);
+      this.funcion = [];
+      this.funcion.push(this.dataReceived['P']+ "\xa0\xa0\xa0\xa0\xa0\xa0\xa0" 
+        + this.datasubmit['x'][0]+" <= x <= "+ this.datasubmit['x'][this.datasubmit['x'].length - 1]);
       
       console.log(this.funcion);
 
       //put points in the graph
-      this.funcion = [];
       for(var i = 0; i < this.datasubmit['x'].length ; i++)
         this.points.push({
           "x": this.datasubmit['x'][i], 
@@ -129,7 +130,7 @@ export class LinearPage {
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
       .then(result => {
         console.log("RECIVI");
-        console.log(this.dataReceived);
+        console.log(result);
         this.dataReceived = result;
         this.showResult = true;
         this.results();
@@ -185,3 +186,4 @@ export class LinearPage {
     });
   }
 }
+

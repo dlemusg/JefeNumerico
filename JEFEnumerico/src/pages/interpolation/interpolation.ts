@@ -1,3 +1,4 @@
+import { NewtonDivPage } from './newton-div/newton-div';
 import { CubicPage } from './cubic/cubic';
 import { QuadraticPage } from './quadratic/quadratic';
 import { LinearPage } from './linear/linear';
@@ -31,6 +32,10 @@ export class InterpolationPage {
 
   goCubic(){
     this.navCtrl.push(CubicPage);
+  }
+
+  goNewton(){
+    this.navCtrl.push(NewtonDivPage);
   }
 
   showAlert(error, subtitle) {

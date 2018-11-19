@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Cubic spline</ion-title>
+    <ion-title>Newton</ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="royal" (click)="help()">
         <ion-icon name="md-help-circle"></ion-icon>
@@ -47,11 +47,11 @@
   <div *ngIf="showResult">
     <ion-card>
       <ion-card-content>
-        <b><em>polynomial P(X) =</em></b>
+        <b><em>polynomial </em></b>
         <ion-list *ngFor="let i of funcion">
 
           <br><br>
-          <li>{{i}}</li>
+          <li>P(X) = {{i}}</li>
         </ion-list>
       </ion-card-content>
     </ion-card>

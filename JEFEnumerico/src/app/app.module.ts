@@ -1,3 +1,4 @@
+import { NewtonDivPage } from './../pages/interpolation/newton-div/newton-div';
 import { CubicPage } from './../pages/interpolation/cubic/cubic';
 import { QuadraticPage } from './../pages/interpolation/quadratic/quadratic';
 import { LinearPage } from './../pages/interpolation/linear/linear';
@@ -63,7 +64,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     LagrangePage,
     LinearPage,
     QuadraticPage,
-    CubicPage
+    CubicPage,
+    NewtonDivPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     LagrangePage,
     LinearPage,
     QuadraticPage,
-    CubicPage
+    CubicPage,
+    NewtonDivPage
   ],
   providers: [
     StatusBar,

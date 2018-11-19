@@ -105,6 +105,7 @@ export class QuadraticPage {
       this.points = [];
 
       //put the polinomials in the screen
+      this.funcion = [];
       for(var i = 0 ; i < this.dataReceived['P'].length ; i++)
         this.funcion.push(this.dataReceived['P'][i]+ "\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + this.dataReceived['R'][i]);
       
