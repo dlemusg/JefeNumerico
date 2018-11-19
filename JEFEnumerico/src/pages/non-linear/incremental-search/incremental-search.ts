@@ -28,7 +28,7 @@ export class IncrementalSearchPage {
 
     this.table = true;
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/incrementalSearch';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/incrementalSearch';
   }
 
   //Initialize the variables

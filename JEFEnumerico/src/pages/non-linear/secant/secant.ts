@@ -29,7 +29,7 @@ export class SecantPage {
     this.dataSubmit['tipoError'] = '';
 
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/secant';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/secant';
     this.table = true;
   }
 

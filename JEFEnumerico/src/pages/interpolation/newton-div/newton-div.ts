@@ -33,6 +33,10 @@ export class NewtonDivPage {
   private funcion = [];
   private showmatriz = false;
   private points = [];
+  private table = true;
+  private columns = [];
+  private rows = [];
+  private names = [];
 
   //constructor of class
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -118,9 +122,38 @@ export class NewtonDivPage {
           "y": this.datasubmit['y'][i] 
         });
       this.drawFunction(this.dataReceived['data']);
+      this.tableComplete();
     } else {
       this.showAlert("ERROR:", this.dataReceived['error']);
     }
+  }
+
+  private addColumns(){
+    this.columns = [];
+    var x;
+    for(var i = 0; i < this.dataReceived['encabezado'].length;i++)
+      this.columns.push({name: this.dataReceived['encabezado'][i]});
+  }
+
+  private addRows(){
+    this.rows = [];
+    for(var i = 0;i < this.dataReceived['0'].length;i++){
+      var json = {};
+      for(var j = 0; j< this.dataReceived['encabezado'].length; j++ ){
+        let x = this.dataReceived['encabezado'][j];
+        json[x] = this.dataReceived[j.toString()][i];
+      }
+      console.log(this.rows)
+      this.rows.push(json);
+    }
+  }
+  // complete the table with the values sent by the server
+  tableComplete() {
+    this.table = false;//people can see the table
+    this.addColumns();
+    this.addRows();
+    this.rows = [...this.rows];
+    this.columns = [...this.columns];
   }
 
   //comunicate with serve
@@ -129,11 +162,16 @@ export class NewtonDivPage {
     console.log(this.datasubmit)
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
       .then(result => {
-        console.log("RECIVI");
-        console.log(result);
-        this.dataReceived = result;
-        this.showResult = true;
-        this.results();
+        if (typeof (result) == "string") {
+          this.showAlert("ERROR", result);
+          this.table = false;
+        }else{
+          console.log("RECIVI");
+          console.log(result);
+          this.dataReceived = result;
+          this.showResult = true;
+          this.results();
+        }
       }, (err) => {
         this.showAlert("ERORR:", "verify parameters entered");
         console.log(err);

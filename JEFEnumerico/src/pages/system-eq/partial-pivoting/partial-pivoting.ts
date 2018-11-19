@@ -12,7 +12,7 @@ import { stringify } from '@angular/core/src/render3/util';
   templateUrl: 'partial-pivoting.html',
 })
 export class PartialPivotingPage {
-  private apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/partialPivoting';
+  private apiUrl = 'https://stormy-depths-76714.herokuapp.com/partialPivoting';
 
   showResult = false;
 
@@ -123,11 +123,16 @@ export class PartialPivotingPage {
   public postServer() {
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
       .then(result => {
-        this.dataReceived = result;
-        this.showResult = true;
-        console.log("ME LLEGA DEL SERVIDOR COMO RTA");
-        console.log(result);
-        this.results();
+        if (typeof (result) == "string") {
+          this.showAlert("ERROR:", result);
+          this.showResult = false;
+        }else {
+          this.dataReceived = result;
+          this.showResult = true;
+          console.log("ME LLEGA DEL SERVIDOR COMO RTA");
+          console.log(result);
+          this.results();
+        }
       }, (err) => {
         this.showAlert("ERORR:", "verify parameters entered");
         console.log(err);

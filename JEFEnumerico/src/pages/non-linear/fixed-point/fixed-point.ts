@@ -30,7 +30,7 @@ export class FixedPointPage {
     this.dataSubmit['tipoError'] = '';
 
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/fixedpoint';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/fixedpoint';
     this.table = true;
   }
 

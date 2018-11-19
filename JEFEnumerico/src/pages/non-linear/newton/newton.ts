@@ -28,7 +28,7 @@ export class NewtonPage {
     this.dataSubmit['tipoError'] = '';
 
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/newton';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/newton';
     this.table = true;
   }
 

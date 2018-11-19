@@ -74,9 +74,7 @@ export class JacobiSorPage {
                       <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
                         that the method will try to find the interval</li>
                       <li> <b>x0:</b> is the initial value, it is a number </li>
-                      <li> for more information go to the 
-                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/iterative-methods/jacobi">
-                      Page</a>
+                      
                     </li>
                     </ul>`,
       buttons: ['OK']
@@ -167,14 +165,17 @@ export class JacobiSorPage {
   public postServer() {
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
     .then(result => {
-      this.dataReceived = result;
-      this.showResult = true;
-      console.log("ME LLEGA DEL SERVIDOR COMO RTA");
-      console.log(result);
+      
       if (typeof (result) == "string") {
         this.showAlert("ERROR:", result);
         this.table = true;
-      }else this.tableComplete();
+      }else {
+        this.dataReceived = result;
+        this.showResult = true;
+        console.log("ME LLEGA DEL SERVIDOR COMO RTA");
+        console.log(result);
+        this.tableComplete();
+      }
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");
       console.log(err);

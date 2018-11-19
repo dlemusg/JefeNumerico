@@ -167,15 +167,18 @@ export class GaussPage {
     this.HttpNonLinearProvider.post(this.datasubmit, this.apiUrl)
     .then(result => {
       this.dataReceived = result;
-      this.showResult = true;
+      
       console.log("ME LLEGA DEL SERVIDOR COMO RTA");
       console.log(result);
       if (typeof (result) == "string") {
         this.showAlert("ERROR:", result);
         this.table = true;
+        this.showResult = false;
       }
-      else
+      else{
+      this.showResult = true;
       this.tableComplete();
+      }
       //this.results();
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");

@@ -1,3 +1,4 @@
+import { GaussSorPage } from './gauss-sor/gauss-sor';
 import { JacobiSorPage } from './jacobi-sor/jacobi-sor';
 import { JacobiPage } from './jacobi/jacobi';
 import { CholeskyPage } from './cholesky/cholesky';
@@ -68,6 +69,10 @@ export class SystemEqPage {
 
   goSorJacobi(){
     this.navCtrl.push(JacobiSorPage);
+  }
+
+  goSorGauss(){
+    this.navCtrl.push(GaussSorPage);
   }
 
 

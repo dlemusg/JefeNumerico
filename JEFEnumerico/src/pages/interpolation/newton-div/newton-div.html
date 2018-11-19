@@ -70,5 +70,7 @@
       <canvas #line drawTicks="false"></canvas>
     </ion-card-content>
   </ion-card>
+  <ngx-datatable [hidden]="table" [scrollbarH]="true" class="fullscreen" ngClass="bootstrap" [rows]="rows"
+        [columnMode]="'force'" [columns]="columns" [reorderable]="false"></ngx-datatable>
 
 </ion-content>

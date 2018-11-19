@@ -30,7 +30,7 @@ export class FalsePositionPage {
     this.dataSubmit['tipoError'] = '';
     this.table = true;
     
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/falsePostion';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/falsePostion';
     this.initializationDataRecived();
   }
 

@@ -32,7 +32,7 @@ export class BisectionPage {
 
     this.table = true;
     this.initializationDataRecived();
-    this.apiUrl = 'https://tranquil-plateau-12350.herokuapp.com/bisection';
+    this.apiUrl = 'https://stormy-depths-76714.herokuapp.com/bisection';
   }
 
   // When the page loads, a signal is sent to the console.
