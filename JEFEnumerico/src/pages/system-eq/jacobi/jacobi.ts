@@ -151,19 +151,6 @@ export class JacobiPage {
     }
   }
 
-  //verify if there are some error and put the results
-  private results(){
-    this.showStep = false;
-    if(this.dataReceived['error'] == null ){
-      this.xs = this.dataReceived['X'];
-      this.escalonada = this.dataReceived[(this.n-1).toString()];
-      console.log(this.escalonada);
-    }else{
-      this.showAlert("ERORR:",this.dataReceived['error']);
-    }
-  }
-
-
   //show alerts
   showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
@@ -185,9 +172,8 @@ export class JacobiPage {
       console.log(result);
       if (typeof (result) == "string") {
         this.showAlert("ERROR:", result);
-      }
-      this.tableComplete();
-      //this.results();
+        this.table = true;
+      }else this.tableComplete();
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");
       console.log(err);

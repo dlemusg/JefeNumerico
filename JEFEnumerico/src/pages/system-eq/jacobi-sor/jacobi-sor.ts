@@ -4,15 +4,14 @@ import { IonicPage, NavController, NavParams, AlertController }
 import { HttpNonLinearProvider }
   from './../../../providers/http-non-linear/http-non-linear';
 import { stringify } from '@angular/core/src/render3/util';
-
 @IonicPage()
 @Component({
-  selector: 'page-gauss',
-  templateUrl: 'gauss.html',
+  selector: 'page-jacobi-sor',
+  templateUrl: 'jacobi-sor.html',
 })
-export class GaussPage {
+export class JacobiSorPage {
 
-  private apiUrl  = 'https://stormy-depths-76714.herokuapp.com/gaussseidel';
+  private apiUrl  = 'https://stormy-depths-76714.herokuapp.com/jacobirelajado';
   
   showResult = false;
 
@@ -75,6 +74,8 @@ export class GaussPage {
                       <li> <b>Iters:</b> is a whole number; is the maximum number of iterations 
                         that the method will try to find the interval</li>
                       <li> <b>x0:</b> is the initial value, it is a number </li>
+                      <li> for more information go to the 
+                      <a href="https://sites.google.com/view/jefeanumerico/ecuation-systems/iterative-methods/jacobi">
                       Page</a>
                     </li>
                     </ul>`,
@@ -173,10 +174,7 @@ export class GaussPage {
       if (typeof (result) == "string") {
         this.showAlert("ERROR:", result);
         this.table = true;
-      }
-      else
-      this.tableComplete();
-      //this.results();
+      }else this.tableComplete();
     }, (err) => {
       this.showAlert("ERORR:", "verify parameters entered");
       console.log(err);

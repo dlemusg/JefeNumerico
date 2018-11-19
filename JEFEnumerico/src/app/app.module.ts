@@ -1,3 +1,4 @@
+import { JacobiSorPage } from './../pages/system-eq/jacobi-sor/jacobi-sor';
 import { GaussPage } from './../pages/system-eq/gauss/gauss';
 import { NewtonDivPage } from './../pages/interpolation/newton-div/newton-div';
 import { CubicPage } from './../pages/interpolation/cubic/cubic';
@@ -67,7 +68,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     QuadraticPage,
     CubicPage,
     NewtonDivPage,
-    GaussPage
+    GaussPage,
+    JacobiSorPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +106,8 @@ import { LagrangePage } from '../pages/interpolation/lagrange/lagrange';
     QuadraticPage,
     CubicPage,
     NewtonDivPage,
-    GaussPage
+    GaussPage,
+    JacobiSorPage
   ],
   providers: [
     StatusBar,
