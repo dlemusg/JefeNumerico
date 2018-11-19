@@ -1,0 +1,73 @@
+<ion-header color="secondary">
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gauss-Seidel</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="help()">
+        <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item id="matrixDimension">
+    <ion-input type="number" [(ngModel)]="n" name='n' placeholder="Dimension of the matrix"></ion-input>
+  </ion-item>
+  <button ion-button type="submit" block (click)="createMatrix()" color="secondary">Generate Matrix</button>
+  <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh">
+    <div *ngIf="buttonClicked">
+      <form (ngSubmit)='submitForm()'>
+        <ion-row>
+          <ion-col>
+            <ion-item id="niter">
+              <ion-label color="dark">Iters = </ion-label>
+              <ion-input type="number" [(ngModel)]="datasubmit.niteraciones" name="niter"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item id="tol">
+              <ion-label color="dark">Tol = </ion-label>
+              <ion-input type="text" [(ngModel)]="datasubmit.tolerancia" name="tole"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <p>Write Matrix A</p>
+        <table align="center">
+          <tr *ngFor="let i of matrix; let k = index">
+            <td *ngFor="let j of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <p>Write Vector b</p>
+        <table align="center">
+          <tr>
+            <td *ngFor="let i of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
+        </table>
+        <br>
+
+        <p>Write X0:</p>
+        <table align="center">
+          <tr>
+            <td *ngFor="let i of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.x0[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <button ion-button type="submit" color="secondary" block>calculate</button>
+      </form>
+      <ngx-datatable [hidden]="table" [scrollbarH]="true" class="fullscreen" ngClass="bootstrap" [rows]="rows"
+        [columnMode]="'force'" [columns]="columns" [reorderable]="false"></ngx-datatable>
+    </div>
+  </ion-scroll>
+</ion-content>

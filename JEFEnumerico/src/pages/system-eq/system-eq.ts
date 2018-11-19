@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TotalPivotingPage } from './total-pivoting/total-pivoting';
 import { LuPartialPage } from './lu-partial/lu-partial';
+import { GaussPage } from './gauss/gauss';
 
 @IonicPage()
 @Component({
@@ -58,6 +59,10 @@ export class SystemEqPage {
 
   goJacobi(){
     this.navCtrl.push(JacobiPage);
+  }
+
+  goGauss(){
+    this.navCtrl.push(GaussPage);
   }
 
 

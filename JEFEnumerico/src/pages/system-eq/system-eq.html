@@ -75,13 +75,18 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Gauss-Seidel</button>
+        <button ion-button full round color="secondary" (click)="goGauss()" class="button">Gauss-Seidel</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Métodos de Relajación(SOR)</button>
+        <button ion-button full round color="secondary" (click)="noDefined()" class="button">Jacobi(SOR)</button>
       </ion-col>
     </ion-row>
+    <ion-row>
+        <ion-col>
+          <button ion-button full round color="secondary" (click)="noDefined()" class="button">Gauss(SOR)</button>
+        </ion-col>
+      </ion-row>
   </ion-grid>
 </ion-content>
